@@ -43,7 +43,7 @@ b {
     padding-right: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-top: 10px;
+
     font-size: 110%;
     font-weight: bold;
     border-radius: 10px;
@@ -51,6 +51,13 @@ b {
     color: white;
     cursor: pointer;
     border: none;
+    text-decoration: none;
+}
+#create_button:hover {
+    opacity: 0.8;
+}
+#create_button_div {
+    margin-top: 35px;
 }
 
 button:hover {
@@ -71,11 +78,13 @@ span.psw {
     font-weight: bold;
     font-size: 150%;
     padding-right: 30px;
+    text-decoration: none;
 }
 
 #trennlinie {
     margin-left: 100px;
     margin-right: 100px;
+    margin-bottom:30px;
     height: 3px;
     border: none;
     background-color: rgb(9, 78, 9);
@@ -91,7 +100,7 @@ span.psw {
 
 .new_to_leftlovers {
     text-align: center;
-    margin-top: 75px;
+    margin-top: 50px;
     font-size: 150%;
 }
 

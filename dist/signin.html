@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <title>Anmelden</title>
+    <title>Registrieren</title>
     <form action="">
         <div class="imgcontainer pacifico">
             leftlovers
@@ -25,20 +25,19 @@
             </label>
             <input type="password" placeholder="Passwort eingeben" name="psw" required>
 
-            <button id="submit_button" type="submit">Anmelden</button>
-        </div>
+            <label for="psw_repeat">
+                <b>Passwort wiederholen</b>
+            </label>
+            <input type="password" placeholder="Passwort erneut eingeben" name="psw_repeat" required>
 
-        <div>
-            <span class="psw">
-                <a href="#">Passwort vergessen</a>
-            </span>
+            <button id="submit_button" type="submit">Registrieren</button>
         </div>
     </form>
     <div class="new_to_leftlovers">
-        <hr id="trennlinie"/>
-        <div ><em>Neu bei <italic class="pacifico small">letlovers</italic>?</em></div>
-        <div id="create_button_div">
-            <a type="button" id="create_button" href="./signin.html">Konto erstellen</a>
+            <hr id="trennlinie"/>
+            <div ><em>Sie haben bereits ein Konto?</em></div>
+            <div id="create_button_div">
+                <a type="button" id="create_button" href="./login.html">Anmelden</a>
+            </div>
         </div>
-    </div>
 </body>
