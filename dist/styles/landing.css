@@ -2,27 +2,17 @@ body, html {
     height: 100%;
     margin: 0;
 }
-#pic_vegetables {
-    background-image: url("../images/vegetables_new.png");
-    height: 100%;
-    /*width: 100%;*/
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
 .pacifico {
     font-family: 'Pacifico', cursive;
 
 }
 #heading {
-    margin: 0;
     text-align: center;
-    padding-bottom: 10%;
     position: relative;
-    transform: translateY(-50%);
+    transform: translateY(210%);
     font-size: 900%;
-    margin-top:25%;
+    /*margin-top: 25%;*/
 }
 /*
 #sub_heading {
@@ -30,6 +20,15 @@ body, html {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 */
+#pic_vegetables {
+    background-image: url("../images/vegetables.jpg");
+    height: 83.9%;
+    /*width: 100%;*/
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 ul {
     list-style-type: none;
     margin: 0px 0px 0px 0px;
