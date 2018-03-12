@@ -1,57 +1,61 @@
 import { Component } from "react"
-import LoginModel from "./LoginModel"
+import fetch from 'isomorphic-fetch'
 class Login extends Component {
     constructor(props) {
         super(props)
-        this.submit = this.submit.bind(this)
+        //this.submit = this.submit.bind(this)
         this.state = {
-            userBack: "userBack",
-            passwordBack: "passwordBack"
+            loading: false,
+            antwort: "leer"
         }
     }
-    componentDidMount() {
-
-    }
+    /*
     submit(e) {
-        const {_username, _password} = this.refs
-        this.setState({userBack: _username, passwordBack: _password})
-    }
-        /*
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-               // Typical action to be performed when the document is ready:
-               alert(xhttp.responseText);
-            }else{
-                alert(this.status)
-            }
-        };
-        let login = new Login(_username.value,_password.value)
-        xhttp.open("POST", "http://localhost/OpenWeatherAPIService/test2?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJsZWZ0bG92ZXJzX3d3aTE2QjMiLCJpYXQiOjE1MjA1MDYzODF9.FV3_c-XICWAt1TcAjJB9Z0OVbchjCbFUWfhSBcZtJ2w", true);
-        xhttp.setRequestHeader("Content-Type", "application/json")
-        xhttp.send(JSON.stringify(login));
-        */
 
+
+        const {_username, _password} = this.refs
+        var xhttp = new XMLHttpRequest();
+        if (this.readyState == 4 && this.status == 200) {
+           document.getElementById("root").innerHTML = this.responseText;
+          }
+        };
+        let jdon = ``
+        xhttp.open("GET", "http://localhost/OpenWeatherAPIService/test2/", true);
+        xhttp.send();
         /*
         let ajax = new XMLHttpRequest()
         alert(`Username: ${_username.value}\nPassword: ${_password.value}`)
-        */
-    
+        
+}*/
+    componentDidMount() {
+        this.setState({loading:true})
+        //response.type = "json"?
+        fetch('https://leftloversgateway.azurewebsites.net/APIGateway') //,{method: 'post', headers: {'Content-Type':'application'json'}} https://stackoverflow.com/questions/34772753/how-to-parse-json-after-exception-handling-promise-with-isomorphic-fetch
+            .then(response => {
+                console.log(response)
+                return response.json()
+            })
+            .then(antwort => {
+                console.log(antwort)
+                return this.setState({antwort, loading:false})
+            })
+    }
     render() {
-        return (
-            <form onSubmit={this.submit}> {/*{e=>e.preventDefault()*/}
-                <label htmlFor="user-name">Benutzername</label>
+            /*
+            <form onSubmit={this.submit}> {/*{e=>e.preventDefault()}
+                <label for="user-name">Benutzername</label>
                 <input type="text" name="username" ref="_username" required />
 
-                <label htmlFor="password">Passwort</label>
+                <label for="password">Passwort</label>
                 <input type="password" name="password" ref="_password" required />  
 
-                <button>Anmelden</button>
-                <div className="output">
-                    {`Passwort: ${this.state.passwordBack} und Nutzer: ${this.state.userBack}`}
-                </div>           
+                <button>Anmelden</button>           
             </form>
-        )
+            */
+            const {antwort, loading} = this.state
+            return (loading)?
+                <div>Loading Response..</div>:
+                <div>{antwort}</div>
     }
 }
 module.exports = Login

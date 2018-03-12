@@ -22,6 +22,12 @@ input[type=text], input[type=password] {
     font-size: 500%;
     padding-top: 0.375em;
 }
+
+.no_deco {
+    text-decoration: none;
+    color: black;
+}
+
 b {
     font-size: 150%;
 }
