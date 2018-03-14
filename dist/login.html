@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href=".\styles\login.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <script src="./scripts/login.js"></script>
 </head>
 
 <body>
     <title>Anmelden</title>
-    <form action="">
+    <div class="form_signin">
         <div class="imgcontainer pacifico">
             <a class="no_deco" href="./index.html">leftlovers</a>
         </div>
@@ -18,14 +19,14 @@
             <label for="uname">
                 <b>Benutzername</b>
             </label>
-            <input type="text" placeholder="Benutzername eingeben" name="uname" required>
+            <input type="text" id="login_benutzer" placeholder="Benutzername eingeben" name="uname" required>
 
             <label for="psw">
                 <b>Passwort</b>
             </label>
-            <input type="password" placeholder="Passwort eingeben" name="psw" required>
+            <input type="password" id="login_passwort" placeholder="Passwort eingeben" name="psw" required>
 
-            <button id="submit_button" type="submit">Anmelden</button>
+            <button id="anmelde_button">Anmelden</button>
         </div>
 
         <div>
@@ -33,7 +34,7 @@
                 <a href="#">Passwort vergessen</a>
             </span>
         </div>
-    </form>
+    </div>
     <div class="new_to_leftlovers">
         <hr id="trennlinie"/>
         <div ><em>Neu bei <a href="./index.html" class="pacifico small no_deco">leftlovers</a>?</em></div>
