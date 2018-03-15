@@ -29,6 +29,7 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
+/*
 ul {
     list-style-type: none;
     margin: 0px 0px 0px 0px;
@@ -36,13 +37,24 @@ ul {
     overflow: hidden;
 
 }
-
+*/
+/*
 .navigation > li {
     float: left;
-    /*height: 160px;*/
+    /*height: 160px;
     text-align: center;
 }
+*/
 
+
+.navigation {
+    width: 100%;
+}
+.navigation > th {
+    text-align: center;
+    
+}
+/*
 .navigation > li a {
     display: inline-block;
     color: rgb(9, 78, 9);
@@ -60,26 +72,48 @@ ul {
     margin-left: 0.4285714em;
 
 }
-.navigation > li a:hover {
+*/
+th a {
+    display: inline-block;
+    color: rgb(9, 78, 9);
+    font-weight: bold;
+    text-align: center;
+    padding-top: 0.714285em;
+    padding-bottom: 0.714285em;
+    padding-left: 0.714285em;
+    padding-right:0.714285em;
+    text-decoration: none;
+    font-size: 250%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 0.714285em;
+    margin-top: 0.571428em; 
+    /*margin-left: 0.4285714em;*/
+}
+th  a:hover {
     cursor: pointer;
     background-color: rgb(6, 56, 6);
     color: white;
+    text-decoration: none;
 }
+
 #left {
-    padding-right: 10%;
+    padding-right: 2.5%;
 }
 #center {
-    padding-left:10%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
 }
 #right {
-    float: right;
-    padding-right: 5%;
+    padding-left: 2.5%;
 }
+
 #about_us {
     font-size: 25px;
-    background-color: rgb(133, 170, 32);
     padding: 1.2em;
+    width: 100%;
+    background-image: url("../images/salbei.jpg");
 }
+
 tr {
     margin-top: 0.4em;
     margin-bottom: 0.4em;
@@ -91,4 +125,5 @@ tr {
 }
 th {
     height: 8.1em;
+    text-align: center;
 }
