@@ -12,45 +12,48 @@
 
 <body>
     <title>Registrieren</title>
-    <div class="form_signin">
-        <div class="imgcontainer pacifico">
-            <a class="no_deco" href="./index.html">leftlovers</a>
+    <div id="whole_page">
+        <div class="form_signin">
+            <div class="imgcontainer pacifico">
+                <a class="no_deco" href="./index.html">leftlovers</a>
+            </div>
+
+            <div class="container">
+                <label for="city">
+                    <b>Stadt</b>
+                </label>
+                <input type="text" placeholder="Suche deine Stadt" name="city" id="city" required>
+                <label for="email">
+                    <b>E-Mail Adresse</b>
+                </label>
+                <input type="text" placeholder="" name="email" id="email" required>
+                <label for="uname">
+                    <b>Benutzername</b>
+                </label>
+                <input type="text" placeholder="Nur Buchstaben und Zahlen, keine Umlaute, mindestens sechs Zeichen" name="uname" id="uname"
+                    required>
+
+                <label for="psw">
+                    <b>Passwort</b>
+                </label>
+                <input type="password" placeholder="Mindestens 8 Zeichen" name="psw" id="psw" required>
+
+                <label for="psw_repeat">
+                    <b>Passwort wiederholen</b>
+                </label>
+                <input type="password" placeholder="" name="psw_repeat" id="psw_repeat" required>
+
+                <button id="submit_button">Registrieren</button>
+            </div>
         </div>
-
-        <div class="container">
-            <label for="city">
-                <b>Stadt</b>
-            </label>
-            <input type="text" placeholder="Suche deine Stadt" name="city" id="city" required>
-            <label for="email">
-                <b>E-Mail Adresse</b>
-            </label>
-            <input type="text" placeholder="" name="email" id="email" required>
-            <label for="uname">
-                <b>Benutzername</b>
-            </label>
-            <input type="text" placeholder="Nur Buchstaben und Zahlen, keine Umlaute, mindestens sechs Zeichen" name="uname" id="uname" required>
-
-            <label for="psw">
-                <b>Passwort</b>
-            </label>
-            <input type="password" placeholder="Mindestens 8 Zeichen" name="psw" id="psw" required>
-
-            <label for="psw_repeat">
-                <b>Passwort wiederholen</b>
-            </label>
-            <input type="password" placeholder="" name="psw_repeat" id="psw_repeat" required>
-
-            <button id="submit_button">Registrieren</button>
-        </div>
-    </div>
-    <div class="new_to_leftlovers">
-        <hr id="trennlinie" />
-        <div>
-            <em>Sie haben bereits ein Konto?</em>
-        </div>
-        <div id="create_button_div">
-            <a type="button" id="create_button" href="./login.html">Anmelden</a>
+        <div class="new_to_leftlovers">
+            <hr id="trennlinie" />
+            <div>
+                <em>Sie haben bereits ein Konto?</em>
+            </div>
+            <div id="create_button_div">
+                <a type="button" id="create_button" href="./login.html">Anmelden</a>
+            </div>
         </div>
     </div>
     <!--<script src="assets/bundle.js"></script>-->
