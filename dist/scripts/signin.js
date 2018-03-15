@@ -44,17 +44,15 @@ class Register {
 //module.exports = Register
 
 window.addEventListener("load", () => {
-    var global = undefined///////////////////////
+    var global = undefined
     const acc = new google.maps.places.Autocomplete(document.getElementById("city"), {
         //types: ['(cities)'],
         componentRestrictions: { country: 'de' }
     })
-    const hidden_div = document.getElementById("div_hidden")
 
     google.maps.event.addListener(acc, 'place_changed', () => {
         const place = acc.getPlace()
-        hidden_div.innerHTML = ""
-        hidden_div.innerHTML = place
+        global = place
         console.log(place.formatted_address)
         console.log(place.url)
         console.log(place.geometry.location)
@@ -67,7 +65,7 @@ window.addEventListener("load", () => {
         const input_password = document.getElementById("psw")
         const input_password_repeat = document.getElementById("psw_repeat")
 
-  
+
         let register = new Register("invalid city", input_email.value, input_user.value, input_password.value, input_password_repeat.value)
 
         const create_div = (big_sister, textContent) => {
@@ -88,23 +86,21 @@ window.addEventListener("load", () => {
 
 
 
-        if (!input_city.value || input_city.value == "") {
+        if (!input_city.value || input_city.value === "") {
             register.setFlag()
             create_div(input_city, "! Keine Stadt gesucht")
         } else {
             remove_div("! Keine Stadt gesucht")
-            if (!hidden_div.innerHTML || hidden_div.innerHTML == "") {
+            if (global === undefined || global === "") {
                 register.setFlag()
                 create_div(input_city, "! Keine Stadt aus den Vorschlägen ausgewählt")
             } else {
-                remove_div ("! Keine Stadt aus den Vorschlägen ausgewählt")
-                if(!hidden_div.innerHTML || hidden_div.innerHTML != "") {
-                    register.city = hidden_div.innerHTML
-                }
+                remove_div("! Keine Stadt aus den Vorschlägen ausgewählt")
+                register.city = global
             }
-        } 
+        }
 
-        
+
         if (!register.check_userName()) {
             register.setFlag()
             create_div(input_user, "! Ungültiger Benutzername")
@@ -137,31 +133,33 @@ window.addEventListener("load", () => {
         } else {
             remove_div("! Passwörter sind nicht identisch")
         }
+        console.log("city: " + JSON.stringify(register.city.formatted_address))
         console.log("register: " + JSON.stringify(register))
+
 
         if (register.flag) {
             alert("alles fine")
-            
+
             fetch("https://leftloversgateway.azurewebsites.net/UAAService", { //oder andere url
                 method: "POST",
-                body: JSON.stringify(new Register(input_email.value, input_user.value, input_password.value)),
+                body: JSON.stringify(register),
 
                 headers: {
                     //"Content-Type": "application/json"
                 }
 
             })
-            .then(response => {
-                return response.json()
-            })
-            .then(responseJson => {
-                console.log("responsetext: " + responseJson)
-                return responseJson.actTemp;
-            })
-            .catch(error => {
-                return console.error(error);
-            })
-                
+                .then(response => {
+                    return response.json()
+                })
+                .then(responseJson => {
+                    console.log("responsetext: " + responseJson)
+                    return responseJson.actTemp;
+                })
+                .catch(error => {
+                    return console.error(error);
+                })
+
         }
     })
 })
