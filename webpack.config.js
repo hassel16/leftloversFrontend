@@ -2,7 +2,7 @@ const webpack = require("webpack");
 
 module.exports = {
     //devtool: 'source-map', //hinzugefügt
-    entry: './index.js',
+    entry: './index.js',//alt: ./index.js
     output: {
         path: __dirname + '/dist/assets/',
         filename: 'bundle.js',

@@ -5,10 +5,13 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href=".\styles\login.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUaYI1y3ig_ZVp5C57Sr633U7kl5Bnk0s&libraries=places"></script>
+
     <script src="./scripts/signin.js"></script>
 </head>
 
 <body>
+    <div id="div_hidden" hidden ></div>
     <title>Registrieren</title>
     <div class="form_signin">
         <div class="imgcontainer pacifico">
@@ -19,7 +22,7 @@
             <label for="city">
                 <b>Stadt</b>
             </label>
-            <input type="text" placeholder="" name="city" id="city" required>
+            <input type="text" placeholder="Suche deine Stadt" name="city" id="city" required>
             <label for="email">
                 <b>E-Mail Adresse</b>
             </label>
@@ -51,4 +54,5 @@
             <a type="button" id="create_button" href="./login.html">Anmelden</a>
         </div>
     </div>
+    <!--<script src="assets/bundle.js"></script>-->
 </body>
