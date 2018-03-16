@@ -100,13 +100,13 @@ window.addEventListener("load", () => {
        console.log(register)
         if (register.flag) {
             alert("alles fine")
-
-            fetch("https://leftloversgateway.azurewebsites.net/UAAService", { //oder andere url
+            console.log(JSON.stringify(register))
+            fetch("https://leftloversgateway.azurewebsites.net/UAAService/signin", { //oder andere url
                 method: "POST",
-                body: JSON.stringify(register),
+                body: register,
 
                 headers: {
-                    //"Content-Type": "application/json"
+                    "Content-Type": "application/json"
                 }
 
             })
@@ -115,7 +115,7 @@ window.addEventListener("load", () => {
                 })
                 .then(responseJson => {
                     console.log("responsetext: " + responseJson)
-                    return responseJson.actTemp;
+                    return responseJson;
                 })
                 .catch(error => {
                     return console.error(error);

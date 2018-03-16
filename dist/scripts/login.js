@@ -6,20 +6,20 @@ window.addEventListener("load", () => {
         const input_password = document.getElementById("login_passwort")
 
         console.log(JSON.stringify(new User(input_user.value, input_password.value)))
-        fetch("https://leftloversgateway.azurewebsites.net/UAAService", { //oder andere url
+        fetch("https://leftloversgateway.azurewebsites.net/UAAService/login", { //oder andere url
             method: "POST",
-            body: JSON.stringify(new User(input_user.value, input_password.value)),
+            body: (new User(input_user.value, input_password.value)), //JSON.stringify
         
             //JSON.stringify(new User(input_user.value, input_password.value)),
             headers: {
-                //"Content-Type": "application/json"
+                "Content-Type": "application/json"
             }
             
         })
         .then(response => response.json())
         .then(responseJson => {
-            console.log("responsetext: " + responseJson.actTemp)
-          return responseJson.actTemp;
+            console.log("responsetext: " + responseJson)
+            return responseJson;
         })
         .catch(error => {
           return console.log(error);

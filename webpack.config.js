@@ -5,7 +5,8 @@ module.exports = {
     entry: {
         index: './dist/scripts/index.js',//alt: ./index.js
         signin: './dist/scripts/signin.js',
-        login: './dist/scripts/login.js'
+        login: './dist/scripts/login.js',
+        search: './dist/scripts/search.js'
     },
     output: {
         path: __dirname + '/dist/assets/',
