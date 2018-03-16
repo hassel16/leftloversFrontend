@@ -1,4 +1,4 @@
-import User from './data/User'
+import User from '../../data/User'
 window.addEventListener("load", () => {
     const button_anmelden = document.getElementById("anmelde_button")
     button_anmelden.addEventListener("click", () => {

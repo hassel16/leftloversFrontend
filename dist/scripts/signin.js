@@ -1,4 +1,4 @@
-import Register from './data/Register'
+import Register from '../../data/Register'
 //const Register = require('../../data/Register')
 //key: AIzaSyBUaYI1y3ig_ZVp5C57Sr633U7kl5Bnk0s
 
@@ -97,7 +97,7 @@ window.addEventListener("load", () => {
         console.log("city: " + JSON.stringify(register.city.formatted_address))
         console.log("register: " + JSON.stringify(register))
         */
-        console.log(register)
+       console.log(register)
         if (register.flag) {
             alert("alles fine")
 

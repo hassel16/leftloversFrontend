@@ -3,9 +3,9 @@ const webpack = require("webpack");
 module.exports = {
     //devtool: 'source-map', //hinzugefügt
     entry: {
-        index: './index.js',//alt: ./index.js
-        signin: './signin.js',
-        login: './login.js'
+        index: './dist/scripts/index.js',//alt: ./index.js
+        signin: './dist/scripts/signin.js',
+        login: './dist/scripts/login.js'
     },
     output: {
         path: __dirname + '/dist/assets/',
