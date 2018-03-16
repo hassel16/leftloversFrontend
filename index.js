@@ -5,5 +5,5 @@ import Login from './components/Statefull/Login'
 window.React = React
 render(
     <Login />,
-    document.getElementById('root')
+    document.getElementById('root') //root
 )

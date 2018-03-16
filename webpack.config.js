@@ -2,10 +2,14 @@ const webpack = require("webpack");
 
 module.exports = {
     //devtool: 'source-map', //hinzugefügt
-    entry: './index.js',//alt: ./index.js
+    entry: {
+        index: './index.js',//alt: ./index.js
+        signin: './signin.js',
+        login: './login.js'
+    },
     output: {
         path: __dirname + '/dist/assets/',
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',  //'bundle.js'
         //sourceMapFileName: 'bundle.map' // evtl bundle.js.map
     },
     devtool: 'source-map', // '#' weggemacht

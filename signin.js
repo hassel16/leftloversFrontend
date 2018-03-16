@@ -1,6 +1,7 @@
-//import Register from '../../data/Register'
+import Register from './data/Register'
 //const Register = require('../../data/Register')
 //key: AIzaSyBUaYI1y3ig_ZVp5C57Sr633U7kl5Bnk0s
+/*
 class Register {
     constructor(city, email, user, pw, pw_repeat) {
         this.city = city
@@ -41,9 +42,11 @@ class Register {
         this.flag = false
     }
 }
+*/
 //module.exports = Register
 
 window.addEventListener("load", () => {
+    alert("gelade, signin")
     var global = undefined
     const acc = new google.maps.places.Autocomplete(document.getElementById("city"), {
         //types: ['(cities)'],

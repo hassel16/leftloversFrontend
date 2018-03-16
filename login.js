@@ -1,6 +1,6 @@
-import Register from '../'
+import User from './data/User'
 window.addEventListener("load", () => {
-
+    alert("geladen, login.js")
     const button_anmelden = document.getElementById("anmelde_button")
     button_anmelden.addEventListener("click", () => {
         const input_user = document.getElementById("login_benutzer")
@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
           return responseJson.actTemp;
         })
         .catch(error => {
-          return console.error(error);
+          return console.log(error);
         })
 
     })
