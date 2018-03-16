@@ -1,5 +1,5 @@
 class Register {
-    constructor(email, user, pw, pw_repeat, city,) {
+    constructor(city, email,user, pw, pw_repeat) {
         this.city = city
         this.email = email
         this.user = user
