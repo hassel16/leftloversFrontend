@@ -1,9 +1,21 @@
+* {
+        -webkit-box-sizing: border-box;
+}
 body, html {
     height: 100%;
     margin: 0;
     line-height: 1.42857143;
 }
-
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 .pacifico {
     font-family: 'Pacifico', cursive;
 
@@ -11,9 +23,13 @@ body, html {
 #heading {
     text-align: center;
     position: relative;
-    transform: translateY(210%);
+    transform: translateY(150%);
     font-size: 900%;
     /*margin-top: 25%;*/
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 #pic_vegetables {
@@ -25,7 +41,9 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+td, th {
+    padding:0;
+}
 
 .navigation {
     width: 100%;
