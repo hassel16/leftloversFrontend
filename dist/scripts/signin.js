@@ -1,5 +1,5 @@
 import Register from '../../data/Register'
-//const Register = require('../../data/Register')
+import fetch from 'isomorphic-fetch'
 //key: AIzaSyBUaYI1y3ig_ZVp5C57Sr633U7kl5Bnk0s
 
 

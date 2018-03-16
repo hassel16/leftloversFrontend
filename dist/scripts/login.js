@@ -1,4 +1,6 @@
 import User from '../../data/User'
+import fetch from 'isomorphic-fetch'
+
 window.addEventListener("load", () => {
     const button_anmelden = document.getElementById("anmelde_button")
     button_anmelden.addEventListener("click", () => {
