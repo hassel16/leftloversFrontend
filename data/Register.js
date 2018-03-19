@@ -1,3 +1,4 @@
+//import City from './City'
 class Register {
     constructor(city, email,user, pw, pw_repeat) {
         this.city = city
@@ -7,8 +8,6 @@ class Register {
         this.pw_repeat = pw_repeat
         this.flag = true
 
-
-        this.check_city = this.check_city.bind(this)
         this.check_email = this.check_email.bind(this)
         this.check_userName = this.check_userName.bind(this)
         this.check_passwordLenghth = this.check_passwordLength.bind(this)
@@ -17,9 +16,6 @@ class Register {
 
     }
 
-    check_city() {
-
-    }
     check_email() {
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         return (regex.test(this.email.toLowerCase()))

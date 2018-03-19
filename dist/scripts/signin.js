@@ -1,4 +1,6 @@
 import Register from '../../data/Register'
+import City from '../../data/City'
+
 import fetch from 'isomorphic-fetch'
 //key: AIzaSyBUaYI1y3ig_ZVp5C57Sr633U7kl5Bnk0s
 
@@ -13,9 +15,6 @@ window.addEventListener("load", () => {
     google.maps.event.addListener(acc, 'place_changed', () => {
         const place = acc.getPlace()
         global = place
-        console.log(place.formatted_address)
-        console.log(place)
-        console.log(place.geometry.location)
     })
     const button_registrieren = document.getElementById("submit_button")
     button_registrieren.addEventListener("click", () => {
@@ -27,7 +26,7 @@ window.addEventListener("load", () => {
 
 
         let register = new Register("invalid city", input_email.value, input_user.value, input_password.value, input_password_repeat.value)
-        console.log(register)
+        console.log("frisch erzeugtes Registerobjekt: " + JSON.stringify(register))
         const create_div = (big_sister, textContent) => {
             if (big_sister.nextElementSibling.nodeName !== "DIV") {
                 let user_error_div = document.createElement("div")
@@ -56,7 +55,11 @@ window.addEventListener("load", () => {
                 create_div(input_city, "! Keine Stadt aus den Vorschlägen ausgewählt")
             } else {
                 remove_div("! Keine Stadt aus den Vorschlägen ausgewählt")
-                register.city = global
+                const long_name = global.address_components.filter(x => x.types[0] === "locality")[0].long_name // :)
+                const lat = global.geometry.location.lat() //entweder stringify oder toString!
+                const lng = global.geometry.location.lng()
+                register.city = new City(long_name, lat, lng)
+                console.log("stadt mit stadtobjekt" + JSON.stringify(register))
             }
         }
 
@@ -93,14 +96,9 @@ window.addEventListener("load", () => {
         } else {
             remove_div("! Passwörter sind nicht identisch")
         }
-        /*
-        console.log("city: " + JSON.stringify(register.city.formatted_address))
-        console.log("register: " + JSON.stringify(register))
-        */
-       console.log(register)
+
         if (register.flag) {
             alert("alles fine")
-            //console.log(JSON.stringify(register))
             fetch("https://leftloversgateway.azurewebsites.net/UAAService/signup", { //oder andere url
                 method: "POST",
                 body: register,
