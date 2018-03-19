@@ -20,7 +20,7 @@ window.addEventListener("load", () => {
         })
         .then(response => response.json())
         .then(responseJson => {
-            console.log("responsetext: " + responseJson)
+            console.log("responsetext: " + JSON.stringify(responseJson))
             return responseJson;
         })
         .catch(error => {
