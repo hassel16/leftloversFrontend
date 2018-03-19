@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
         const place = acc.getPlace()
         global = place
         console.log(place.formatted_address)
-        console.log(place.url)
+        console.log(place)
         console.log(place.geometry.location)
     })
     const button_registrieren = document.getElementById("submit_button")
