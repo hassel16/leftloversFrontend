@@ -47,7 +47,7 @@ table {
 
 #pic_vegetables {
     background-image: url("../images/vegetables.jpg");
-    height: 90%;
+    height: 85%; /*83%;*/
     /*width: 100%;*/
     /* Center and scale the image nicely */
     background-position: center;
@@ -60,6 +60,7 @@ td, th {
 
 .navigation {
     width: 100%;
+    height: 15%;
 }
 .navigation > th {
     text-align: center;
