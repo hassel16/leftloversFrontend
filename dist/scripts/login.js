@@ -6,6 +6,7 @@ const login = () => {
     const input_password = document.getElementById("login_passwort")
 
     console.log(JSON.stringify(new User(input_user.value, input_password.value)))
+    /*
     fetch("https://leftloversgateway.azurewebsites.net/UAAService/login", { //oder andere url
         method: "POST",
         body: (new User(input_user.value, input_password.value)), //JSON.stringify
@@ -16,6 +17,14 @@ const login = () => {
         }
         
     })
+    */
+   fetch("https://standortservice.herokuapp.com/UAAService/login", {
+       method: "POST",
+       body: new User(input_user.value, input_password.value),
+       headers: {
+           "content-type": "application/json"
+       }
+   })
     .then(response => response.json())
     .then(responseJson => {
         console.log("responsetext: " + JSON.stringify(responseJson))

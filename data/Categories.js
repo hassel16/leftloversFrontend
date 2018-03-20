@@ -1,11 +1,27 @@
-/*
-let gemuese_array = "";
-let getreideprodukte_array = "";
-let getraenke_array = "";
-let fleisch_array = "";
-let fisch_array = "";
-let milchprodukte_array = "";
-let obst_array = "";
+let Categories = {
+    "all": [
+        "all"
+    ],
+    "gemuese": [
 
-exportieren
-*/
+    ],
+    "getreideprodukte": [
+
+    ],
+    "getraenke": [
+
+    ],
+    "fleisch": [
+
+    ],
+    "fisch": [
+
+    ],
+    "milchprodukte": [
+
+    ],
+    "obst": [
+
+    ]
+}
+module.exports = Categories

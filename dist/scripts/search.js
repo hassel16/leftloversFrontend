@@ -1,26 +1,11 @@
 
-const feindHoertMit = (opfer) => {
-    opfer.addEventListener("input", () => {
-        let dropdown = document.getElementsByTagName("select")[0]
-        let current_category = dropdown.options[dropdown.selectedIndex].value
-        switch(current_category) {
-            case "all":
-            break
-            case "vegetables":
-            break
-            case "cereals":
-            break
-            case "drinks":
-            break
-            case "meat":
-            break
-            case "fish":
-            break
-            case "milk_products":
-            break
-            case "fruits":
-            break
-        }
+import React from 'react'
+import { render } from 'react-dom'
+import TBody from '../../components/Statefull/TBody'
+window.React = React
+//bei input change muss currentcategory ausgewählt werden
+
+ 
         /*
         fetch("https://leftloversgateway.azurewebsites.net/UAAService/login", { //URL muss angepasst werden
             method: "POST",
@@ -40,9 +25,13 @@ const feindHoertMit = (opfer) => {
                 return console.log(error);
             })
             */
-    })
-}
 
 window.addEventListener("load", () => {
-    feindHoertMit(document.getElementById("angebot_suchen"))
+    render(
+        <TBody />,
+        document.getElementById('react_table') //root
+    )
 })
+
+
+

@@ -7,8 +7,11 @@
     background-position: center;
 }
 th {
-    padding-bottom: 1.5%;
+    /*padding-bottom: 1.5%;*/
 }
 table {
     width:100%;
 }
+input::-webkit-calendar-picker-indicator {
+    display: none;
+  }
