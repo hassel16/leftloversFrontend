@@ -18,7 +18,7 @@ const login = () => {
         
     })
     */
-   fetch("https://standortservice.herokuapp.com/UAAService/login", {
+   fetch("https://leftloversgateway.azurewebsites.net/UAAService/signup", {
        method: "POST",
        body: new User(input_user.value, input_password.value),
        headers: {
