@@ -99,13 +99,19 @@ const signup = () => {
                 console.log("responsetext: " + JSON.stringify(responseJson.exception).includes("UsernameTakenException"))
                 if (JSON.stringify(responseJson.exception).includes("UsernameTakenException")) {
                     create_div(input_user, "! Benutzername ist bereits vergeben")
+                    register.setFlag()
                 } else {
                     remove_div("! Benutzername ist bereits vergebe")
                 }
                 if (JSON.stringify(responseJson.exception).includes("EmailTakenException")) {
                     create_div(input_email, "! Email ist bereits vergeben")
+                    register.setFlag()
                 } else {
                     remove_div("! Email ist bereits vergeben")
+                }
+                console.log("flag: " + register.flag)
+                if(register.flag) {
+                    alert("registrieren hat funktioniert")
                 }
                 return responseJson;
             })

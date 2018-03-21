@@ -28,6 +28,7 @@ const login = () => {
                 create_div(input_password, "! Benutzername oder Passwort falsch")
             } else {
                 remove_div("! Benutzername oder Passwort falsch")
+                alert("anmelden hat geklappt")
             }
             return response.json()
         })
