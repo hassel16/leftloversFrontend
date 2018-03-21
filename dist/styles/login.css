@@ -44,6 +44,7 @@ input[type=text], input[type=password] {
     border: 0.075em solid #ccc;
     box-sizing: border-box;
     background: transparent; /*muss man evtl wieder raus machen*/
+
 }
 
 .pacifico {

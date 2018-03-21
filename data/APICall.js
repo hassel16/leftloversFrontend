@@ -16,6 +16,15 @@ const APICall = {
             },
             body: body
         })
+    },
+    checkForExceptions(response) {
+        if (response.status === 201) {
+            console.log(response.headers)
+        } else if (response.status === 400) {
+
+        } else {
+            console.error(response)
+        }
     }
 }
 module.exports = APICall

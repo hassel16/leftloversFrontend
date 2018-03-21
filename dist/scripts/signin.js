@@ -1,10 +1,28 @@
 import Register from '../../data/Register'
 import City from '../../data/City'
 import {postRequest} from '../../data/APICall'
+import {remove_div, create_div} from '../../data/Factory'
 //key: AIzaSyBUaYI1y3ig_ZVp5C57Sr633U7kl5Bnk0s
 
 var global = undefined
 
+/*
+const create_div = (big_sister, textContent) => {
+    if (big_sister.nextElementSibling.nodeName !== "DIV") {
+        let user_error_div = document.createElement("div")
+        user_error_div.classList.add("error_div")
+        user_error_div.setAttribute("id", textContent)
+        user_error_div.textContent = textContent
+        big_sister.parentNode.insertBefore(user_error_div, big_sister.nextSibling)
+    }
+}
+
+const remove_div = id => {
+    if (document.getElementById(id)) {
+        document.getElementById(id).parentNode.removeChild(document.getElementById(id))
+    }
+}
+*/
 const signup = () => {
     const input_city = document.getElementById("city")
     const input_email = document.getElementById("email")
@@ -15,21 +33,7 @@ const signup = () => {
 
     let register = new Register("invalid city", input_email.value, input_user.value, input_password.value, input_password_repeat.value)
     console.log("frisch erzeugtes Registerobjekt: " + JSON.stringify(register))
-    const create_div = (big_sister, textContent) => {
-        if (big_sister.nextElementSibling.nodeName !== "DIV") {
-            let user_error_div = document.createElement("div")
-            user_error_div.classList.add("error_div")
-            user_error_div.setAttribute("id", textContent)
-            user_error_div.textContent = textContent
-            big_sister.parentNode.insertBefore(user_error_div, big_sister.nextSibling)
-        }
-    }
 
-    const remove_div = id => {
-        if (document.getElementById(id)) {
-            document.getElementById(id).parentNode.removeChild(document.getElementById(id))
-        }
-    }
 
 
 
@@ -87,10 +91,22 @@ const signup = () => {
     if (register.flag) {
         postRequest("UAAService/signup", JSON.stringify(register))
             .then(response => {
+                console.log("status: " + response.status)
+                console.log("headers: " + JSON.stringify(response.headers.toString()))
                 return response.json()
             })
             .then(responseJson => {
-                console.log("responsetext: " + JSON.stringify(responseJson))
+                console.log("responsetext: " + JSON.stringify(responseJson.exception).includes("UsernameTakenException"))
+                if (JSON.stringify(responseJson.exception).includes("UsernameTakenException")) {
+                    create_div(input_user, "! Benutzername ist bereits vergeben")
+                } else {
+                    remove_div("! Benutzername ist bereits vergebe")
+                }
+                if (JSON.stringify(responseJson.exception).includes("EmailTakenException")) {
+                    create_div(input_email, "! Email ist bereits vergeben")
+                } else {
+                    remove_div("! Email ist bereits vergeben")
+                }
                 return responseJson;
             })
             .catch(error => {
@@ -122,3 +138,4 @@ window.addEventListener("load", () => {
         }
     })
 })
+module.exports = {create_div, remove_div}
