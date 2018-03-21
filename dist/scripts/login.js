@@ -1,31 +1,12 @@
 import User from '../../data/User'
-import fetch from 'isomorphic-fetch'
+import {postRequest} from '../../data/APICall'
 
 const login = () => {
     const input_user = document.getElementById("login_benutzer")
     const input_password = document.getElementById("login_passwort")
 
-    console.log(JSON.stringify(new User(input_user.value, input_password.value)))
-    /*
-    fetch("https://leftloversgateway.azurewebsites.net/UAAService/login", { //oder andere url
-        method: "POST",
-        body: (new User(input_user.value, input_password.value)), //JSON.stringify
-    
-        //JSON.stringify(new User(input_user.value, input_password.value)),
-        headers: {
-            "Content-Type": "application/json"
-        }
-        
-    })
-    */
-   fetch("https://leftloversgateway.azurewebsites.net/UAAService/login", {
-       method: "POST",
-       body: //new User(input_user.value, input_password.value),
-            {"username":"daniel","password":"password"}, // für philipp
-       headers: {
-           "content-type": "application/json"
-       }
-   })
+
+    postRequest("UAAService/login", {"username":"daniel","password":"password"}) //new User(input_user.value, input_password.value)
     .then(response => response.json())
     .then(responseJson => {
         console.log("responsetext: " + JSON.stringify(responseJson))
@@ -34,7 +15,7 @@ const login = () => {
     .catch(error => {
       return console.log(error);
     })
-
+    
 }
 
 window.addEventListener("load", () => {

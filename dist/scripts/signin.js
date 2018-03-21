@@ -1,7 +1,6 @@
 import Register from '../../data/Register'
 import City from '../../data/City'
-
-import fetch from 'isomorphic-fetch'
+import {postRequest} from '../../data/APICall'
 //key: AIzaSyBUaYI1y3ig_ZVp5C57Sr633U7kl5Bnk0s
 
 var global = undefined
@@ -87,15 +86,7 @@ const signup = () => {
     }
 
     if (register.flag) {
-        fetch("https://leftloversgateway.azurewebsites.net/UAAService/signup", { //oder andere url
-            method: "POST",
-            body: register,
-
-            headers: {
-                "Content-Type": "application/json"
-            }
-
-        })
+        postRequest("UAAService/signup", register)
             .then(response => {
                 return response.json()
             })
