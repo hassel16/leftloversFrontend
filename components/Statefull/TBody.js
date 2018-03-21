@@ -18,8 +18,21 @@ class TBody extends Component {
             milchprodukte: [...Categories["milchprodukte"]],
             obst: [...Categories["obst"]],
             */
-            current_array: [...Categories["all"]]
+            current_array: [...Categories["all"]],
+            current_city: "defaultCity" //DB-Call notwendig
         }
+    }
+    componentDidMount() {
+        let {_stadt} = this.refs
+        const acc = new google.maps.places.Autocomplete(_stadt, {
+            //types: ['(cities)'],
+            componentRestrictions: { country: 'de' }
+        })
+    
+        google.maps.event.addListener(acc, 'place_changed', () => {
+            const place = acc.getPlace()
+            this.setState({current_city:place})
+        })
     }
 
     feindHoertMit() {
@@ -49,7 +62,7 @@ class TBody extends Component {
                     <Datalist id="elements" elementList={this.state.current_array} />
                 </th>
                 <th>
-                    <input type="text" placeholder="Stadt" />
+                    <input ref="_stadt" type="text" placeholder="Stadt" />
                 </th>
                 <th>
                     <select>

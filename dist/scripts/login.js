@@ -6,7 +6,7 @@ const login = () => {
     const input_password = document.getElementById("login_passwort")
 
 
-    postRequest("UAAService/login", {"username":"daniel","password":"password"}) //new User(input_user.value, input_password.value)
+    postRequest("UAAService/login", JSON.stringify(new User(input_user.value, input_password.value))) 
     .then(response => response.json())
     .then(responseJson => {
         console.log("responsetext: " + JSON.stringify(responseJson))

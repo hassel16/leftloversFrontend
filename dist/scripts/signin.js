@@ -47,7 +47,6 @@ const signup = () => {
             const lat = global.geometry.location.lat() //entweder stringify oder toString!
             const lng = global.geometry.location.lng()
             register.city = new City(long_name, lat, lng)
-            console.log("stadt mit stadtobjekt" + JSON.stringify(register))
         }
     }
 
@@ -86,7 +85,7 @@ const signup = () => {
     }
 
     if (register.flag) {
-        postRequest("UAAService/signup", register)
+        postRequest("UAAService/signup", JSON.stringify(register))
             .then(response => {
                 return response.json()
             })

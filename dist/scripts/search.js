@@ -31,6 +31,13 @@ window.addEventListener("load", () => {
         <TBody />,
         document.getElementById('react_table') //root
     )
+    /*
+    document.getElementById("lebensmittel_einstellen").addEventListener("click", () => {
+        render(
+
+        )
+    })
+    */
 })
 
 
