@@ -53,7 +53,7 @@ const signup = () => {
     }
 
 
-    if (!register.check_userName()) {
+    if (!register.check_username()) {
         register.setFlag()
         create_div(input_user, "! Ungültiger Benutzername")
         input_user.value = ""
@@ -87,7 +87,6 @@ const signup = () => {
     }
 
     if (register.flag) {
-        alert("alles fine")
         fetch("https://leftloversgateway.azurewebsites.net/UAAService/signup", { //oder andere url
             method: "POST",
             body: register,

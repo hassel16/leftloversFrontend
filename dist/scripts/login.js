@@ -18,7 +18,7 @@ const login = () => {
         
     })
     */
-   fetch("https://leftloversgateway.azurewebsites.net/UAAService/signup", {
+   fetch("https://leftloversgateway.azurewebsites.net/UAAService/login", {
        method: "POST",
        body: new User(input_user.value, input_password.value),
        headers: {
