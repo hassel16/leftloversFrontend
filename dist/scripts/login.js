@@ -20,7 +20,8 @@ const login = () => {
     */
    fetch("https://leftloversgateway.azurewebsites.net/UAAService/login", {
        method: "POST",
-       body: new User(input_user.value, input_password.value),
+       body: //new User(input_user.value, input_password.value),
+            {"username":"daniel","password":"password"}, // für philipp
        headers: {
            "content-type": "application/json"
        }
