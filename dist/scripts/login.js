@@ -21,8 +21,10 @@ const login = () => {
         remove_div("! Gib ein Passwort an")
     }
     if (sauber) {
+        create_div(input_password, "einen Moment...", false)
         postRequest("UAAService/login", JSON.stringify(new User(input_user.value, input_password.value))) 
         .then(response => {
+            remove_div("einen Moment...")
             console.log("headers: " + response.headers.get("authorization"))
             if (response.status !== 200) {
                 create_div(input_password, "! Benutzername oder Passwort falsch")

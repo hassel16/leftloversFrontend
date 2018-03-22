@@ -1,8 +1,10 @@
 const Factory = {
-    create_div(big_sister, textContent) {
+    create_div(big_sister, textContent, error=true) {
         if (big_sister.nextElementSibling.nodeName !== "DIV") {
             let user_error_div = document.createElement("div")
-            user_error_div.classList.add("error_div")
+            if (error) {
+                user_error_div.classList.add("error_div")
+            }
             user_error_div.setAttribute("id", textContent)
             user_error_div.textContent = textContent
             big_sister.parentNode.insertBefore(user_error_div, big_sister.nextSibling)

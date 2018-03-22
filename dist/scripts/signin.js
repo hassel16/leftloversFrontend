@@ -89,29 +89,34 @@ const signup = () => {
     }
 
     if (register.flag) {
+        create_div(input_password_repeat, "einen Moment...", false)
         postRequest("UAAService/signup", JSON.stringify(register))
             .then(response => {
+                remove_div("einen Moment...")
                 console.log("status: " + response.status)
-                console.log("headers: " + JSON.stringify(response.headers.toString()))
                 return response.json()
             })
             .then(responseJson => {
-                console.log("responsetext: " + JSON.stringify(responseJson.exception).includes("UsernameTakenException"))
-                if (JSON.stringify(responseJson.exception).includes("UsernameTakenException")) {
-                    create_div(input_user, "! Benutzername ist bereits vergeben")
-                    register.setFlag()
+                if (responseJson.exception) {
+                    if (JSON.stringify(responseJson.exception).includes("UsernameTakenException")) {
+                        create_div(input_user, "! Benutzername ist bereits vergeben")
+                        register.setFlag()
+                    } else {
+                        remove_div("! Benutzername ist bereits vergeben")
+                    }
+                    if (JSON.stringify(responseJson.exception).includes("EmailTakenException")) {
+                        create_div(input_email, "! Email ist bereits vergeben")
+                        register.setFlag()
+                    } else {
+                        remove_div("! Email ist bereits vergeben")
+                    }
                 } else {
                     remove_div("! Benutzername ist bereits vergebe")
-                }
-                if (JSON.stringify(responseJson.exception).includes("EmailTakenException")) {
-                    create_div(input_email, "! Email ist bereits vergeben")
-                    register.setFlag()
-                } else {
                     remove_div("! Email ist bereits vergeben")
                 }
                 console.log("flag: " + register.flag)
                 if(register.flag) {
-                    alert("registrieren hat funktioniert")
+                    console.log("registrieren hat funktioniert")
                 }
                 return responseJson;
             })

@@ -6,12 +6,33 @@ import Label from '../Stateless/Label'
 class Popup extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            current_city: "default city"
+        }
+    }
+    hidePopup() {
+        const {_light} = this.refs
+        _light.style.display='none';
+        document.getElementById('fade').style.display='none'
+    }
+    componentDidMount() {
+        let {_city} = this.refs
+        const acc = new google.maps.places.Autocomplete(_city, {
+            //types: ['(cities)'],
+            componentRestrictions: { country: 'de' }
+        })
+    
+        google.maps.event.addListener(acc, 'place_changed', () => {
+            const place = acc.getPlace()
+            this.setState({current_city: place})
+        })
     }
     render() {
         return (
-            <div className="popup" id="light">
+            <div className="popup" id="light" ref="_light">
+            {/*<form enctype="multipart/form-data">*/}
                 <Label htmlFor="city" text="Stadt" />
-                <input type="text" placeholder="Suche deine Stadt" name="city" id="city" required />
+                <input type="text" ref="_city" placeholder="Suche deine Stadt" name="city" id="city" required />
 
                 <Label htmlFor="bezeichnung" text="Bezeichnung" />
                 <input type="text" placeholder="Was inserierst du?" name="bezeichnung" id="bezeichnung" required />
@@ -26,8 +47,12 @@ class Popup extends Component {
                 <Label htmlFor="beschreibung" text="Beschreibung" />
                 <textarea name="beschreibung" maxLength={160}></textarea>
 
+                <Label htmlFor="bild" text="Bild" />
+                <input name="bild" type="file" accept="*.jpg" />
+
                 <button className="left">Einstellen</button>
-                <button className="rigth">Abbrechen</button>
+                <button className="rigth" onClick={() => this.hidePopup()}>Abbrechen</button>
+               {/*} </form>*/}
             </div >
         )
     }
