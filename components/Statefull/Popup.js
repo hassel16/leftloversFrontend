@@ -11,26 +11,27 @@ class Popup extends Component {
         }
     }
     hidePopup() {
-        const {_light} = this.refs
-        _light.style.display='none';
-        document.getElementById('fade').style.display='none'
+        const { _light } = this.refs
+        _light.style.display = 'none';
+        document.getElementById('fade').style.display = 'none'
     }
+
     componentDidMount() {
-        let {_city} = this.refs
+        let { _city } = this.refs
         const acc = new google.maps.places.Autocomplete(_city, {
             //types: ['(cities)'],
             componentRestrictions: { country: 'de' }
         })
-    
+
         google.maps.event.addListener(acc, 'place_changed', () => {
             const place = acc.getPlace()
-            this.setState({current_city: place})
+            this.setState({ current_city: place })
         })
     }
     render() {
         return (
             <div className="popup" id="light" ref="_light">
-            {/*<form enctype="multipart/form-data">*/}
+                {/*<form enctype="multipart/form-data">*/}
                 <Label htmlFor="city" text="Stadt" />
                 <input type="text" ref="_city" placeholder="Suche deine Stadt" name="city" id="city" required />
 
@@ -41,8 +42,8 @@ class Popup extends Component {
                 <Kategorie />
 
                 <Label htmlFor="preis" text="Preis" />
-                <input type="checkbox"  defaultChecked className="left"/>kostenlos 
-                <input type="number" name="preis" step="0.01" className="rigth"/>
+                <input type="checkbox" defaultChecked className="left" />kostenlos
+                <input ref="_preis" type="number" min="0" name="preis" step="0.01" className="rigth" />
 
                 <Label htmlFor="beschreibung" text="Beschreibung" />
                 <textarea name="beschreibung" maxLength={160}></textarea>
@@ -52,7 +53,7 @@ class Popup extends Component {
 
                 <button className="left">Einstellen</button>
                 <button className="rigth" onClick={() => this.hidePopup()}>Abbrechen</button>
-               {/*} </form>*/}
+                {/*} </form>*/}
             </div >
         )
     }

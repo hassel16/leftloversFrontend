@@ -5,8 +5,7 @@ const APICall = {
         return `https://leftloversgateway.azurewebsites.net/${appendix}`
     },
     getRequest(appendix) {
-        return(APICall.getURL(appendix))
-        //return fetch(this.getURL(appendix))
+        return fetch(APICall.getURL(appendix))
     },
     postRequest(appendix, body) {
         return fetch(APICall.getURL(appendix), {
