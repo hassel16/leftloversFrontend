@@ -42,8 +42,11 @@ class Popup extends Component {
                 <Kategorie />
 
                 <Label htmlFor="preis" text="Preis" />
-                <input type="checkbox" defaultChecked className="left" />kostenlos
-                <input ref="_preis" type="number" min="0" name="preis" step="0.01" className="rigth" />
+                <div className="_100">
+                    <input className="_90" ref="_preis" type="number" min="0" name="preis" step="0.01" id="check" />
+                    <b className="_10">€</b>
+                </div>
+
 
                 <Label htmlFor="beschreibung" text="Beschreibung" />
                 <textarea name="beschreibung" maxLength={160}></textarea>

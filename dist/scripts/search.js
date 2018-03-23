@@ -22,7 +22,7 @@ window.addEventListener("load", () => {
     document.getElementById("lebensmittel_einstellen").addEventListener("click", () => {
         render(
             <Popup />,
-            document.getElementById("such_einstellungen")
+            document.getElementById("popup_anker") //such_einstellungen
         )
         document.getElementById('light').style.display = 'block'
         document.getElementById('fade').style.display = 'block'

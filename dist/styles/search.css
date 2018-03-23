@@ -42,7 +42,7 @@ input::-webkit-calendar-picker-indicator {
     opacity: .80;
     filter: alpha(opacity=80);
 }
-input[type="text"], input[type="number"], input[type="file"], select, textarea {
+input[type="text"], input[type="file"], input[type="number"], select, textarea {
     width: 100%;
     padding: 0.7em 1.2em;
     margin: 0.6em 0;
@@ -52,12 +52,23 @@ input[type="text"], input[type="number"], input[type="file"], select, textarea {
     background: transparent; /*muss man evtl wieder raus machen*/
 
 }
+#check {
+    width: 96%;
+}
 .left {
     width: 50%;
 }
 .rigth {
     width: 50%;
 }
-label > b {
+label {
     width: 100%
+}
+._100 {
+    width: 100%;
+}
+
+._10 {
+    width: 5%;
+    margin-left: 2%;
 }
