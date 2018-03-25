@@ -35,12 +35,16 @@ class TBody extends Component {
         const { _category, _text } = this.refs
         const current_value = _category.options[_category.selectedIndex].value
         this.setState({ current_array: [...Categories[current_value]] })
-        console.log(_text.value)
         getRequest(`AngebotsService/Angebot?angebotstitel=${_text.value}`)
             .then(response => response.json())
             .then(responseJSON => {
                 let teil_array = []
-                responseJSON.map(element => teil_array.push(element.titel))
+                responseJSON.map(element => {
+                    console.log(element.kategorie.titel + " current " + current_value)
+                    if (current_value === "all" || element.kategorie.titel === current_value || element.kategorie.titel === "Verschiedenes") {
+                        return(teil_array.push(element.titel))
+                    }
+                })
                 //hier muss die kategorie in der json mit der current categorie abgeglichen werden
                 console.log("current array: " + this.state.current_array)
                 this.setState({current_array: [...teil_array, ...this.state.current_array]})
@@ -57,13 +61,13 @@ class TBody extends Component {
                 <th>
                     <select ref="_category" onChange={() => this.feindHoertMit()}>
                         <option defaultValue value="all">Alle Kategorien</option>
-                        <option value="gemuese">Gemüse</option>
-                        <option value="getreideprodukte">Getreideprodukte</option>
-                        <option value="getraenke">Getränke</option>
-                        <option value="fleisch">Fleisch</option>
-                        <option value="fisch">Fisch</option>
-                        <option value="milchprodukte">Milchprodukte</option>
-                        <option value="obst">Obst</option>
+                        <option value="Gemüse">Gemüse</option>
+                        <option value="Getreideprodukte">Getreideprodukte</option>
+                        <option value="Getränke">Getränke</option>
+                        <option value="Fleisch">Fleisch</option>
+                        <option value="Fisch">Fisch</option>
+                        <option value="Milchprodukte">Milchprodukte</option>
+                        <option value="Obst">Obst</option>
                     </select>
                     {/* {<Kategorie />} */}
                 </th>

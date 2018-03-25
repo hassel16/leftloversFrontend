@@ -8,12 +8,15 @@ class Ergebnis extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading: false,
             ergebnisse: []
         }
     }
     componentDidMount() {
+        this.setState({loading:true})
         getRequest("AngebotsService/Angebot")
             .then(response => {
+                this.setState({loading:false})
                 return response.json()
             })
             .then(responseJson => {
@@ -28,7 +31,7 @@ class Ergebnis extends Component {
     }
     render() {
         return(
-            <Tabelle ergebnisse={this.state.ergebnisse} />
+            <Tabelle ergebnisse={this.state.ergebnisse} loading={this.state.loading}/>
         )
     }
 }

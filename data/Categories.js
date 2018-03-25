@@ -1,4 +1,4 @@
-import { getRequest } from '../../data/APICall'
+import { getRequest } from './APICall'
 
 // const Kategorien = () => {
 //     let array = []
@@ -13,6 +13,65 @@ import { getRequest } from '../../data/APICall'
 //     return array
 // }
 let Categories = {
+    "Verschiedenes": [
+        "Apfel",
+        "Banane",
+        "Birne",
+        "Erdbeere",
+        "Himbeere",
+        "Kiwi",
+        "Kirsche",
+        "Orange",
+        "Pfirsich",
+        "Traube",
+
+        "Blumenkohl",
+        "Brokkoli",
+        "Erbsen",
+        "Gurke",
+        "Karotten",
+        "Paprika",
+        "Spargel",
+        "Spinat",
+        "Tomate",
+        "Zwiebel",
+
+        "Rind",
+        "Kalb",
+        "Geflügel",
+        "Schwein",
+        "Lamm",
+        "Wild",
+        "Wurst",
+        "Hackfleisch",
+
+        "Forelle",
+        "Hecht",
+        "Hering",
+        "Lachs",
+        "Rotzunge",
+        "Seeteufel",
+        "Seezunge",
+        "Thunfisch",
+
+        "Butter",
+        "Joghurt",
+        "Käse",
+        "Milch",
+
+        "Brot",
+        "Kartoffel",
+        "Nudeln",
+        "Reis",
+
+
+        "Bier",
+        "Limonade",
+        "Saft",
+        "Spirituosen",
+        "Wasser",
+        "Wein",
+    ],
     "all": [
         "Apfel",
         "Banane",
@@ -72,7 +131,7 @@ let Categories = {
         "Wasser",
         "Wein",
     ],
-    "gemuese": [
+    "Gemüse": [
         "Aubergine",
         "Blumenkohl",
         "Bohnen",
@@ -106,7 +165,7 @@ let Categories = {
         "Zucchini",
         "Zwiebel",
     ],
-    "getreideprodukte": [
+    "Getreideprodukte": [
         "Brot",
         "Kartoffel",
         "Mais",
@@ -115,7 +174,7 @@ let Categories = {
         "Nudeln",
         "Reis",
     ],
-    "getraenke": [
+    "Getränke": [
         "Bier",
         "Limonade",
         "Saft",
@@ -123,7 +182,7 @@ let Categories = {
         "Wasser",
         "Wein",
     ],
-    "fleisch": [
+    "Fleisch": [
         "Rind",
         "Kalb",
         "Geflügel",
@@ -133,7 +192,7 @@ let Categories = {
         "Wurst",
         "Hackfleisch",
     ],
-    "fisch": [
+    "Fisch": [
         "Aal",
         "Barsch",
         "Forelle",
@@ -153,7 +212,7 @@ let Categories = {
         "Wels",
         "Zander",
     ],
-    "milchprodukte": [
+    "Milchprodukte": [
         "Butter",
         "Buttermilch",
         "Joghurt",
@@ -163,7 +222,7 @@ let Categories = {
         "Sahne",
         "Schmand",
     ],
-    "obst": [
+    "Obst": [
         "Apfel",
         "Ananas",
         "Aprikose",

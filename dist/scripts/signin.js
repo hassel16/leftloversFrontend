@@ -116,7 +116,7 @@ const signup = () => {
                 }
                 console.log("flag: " + register.flag)
                 if(register.flag) {
-                    console.log("registrieren hat funktioniert")
+                    alert("registrieren hat funktioniert")
                 }
                 return responseJson
             })

@@ -136,3 +136,49 @@ label {
     width: 5%;
     margin-left: 2%;
 }
+.container {
+    padding: 1%;
+}
+.border {
+    background-color: transparent;
+    border-radius: 2%;
+    margin: 1%;
+}
+.thumbnail {
+    height: 14.286em;
+    width: 14.286em;
+}
+.innertable {
+    margin-top: 2%;
+}
+.links {
+    width: 20%;
+}
+.mitte {
+    width: 60%;
+    vertical-align: top;
+}
+.rechts {
+    width:20%;
+}
+#user_cell {
+    text-align: center;
+}
+.row > td {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 2%;
+}
+a {
+    font-size: 125%;
+}
+a:hover {
+    cursor: pointer;
+}
+.titel {
+    font-weight: bold;
+    font-size: 150%;
+}
+.big {
+    font-size: 120%;
+}

@@ -1,13 +1,13 @@
 const Kategorie = ({onNewCategory=f=>f}) => (
     <select name="kategorie" id="offer_kategorie" onChange={onNewCategory}>
         <option defaultValue value="verschiedenes">Verschiedenes</option>
-        <option value="gemuese">Gemüse</option>
-        <option value="getreideprodukte">Getreideprodukte</option>
-        <option value="getraenke">Getränke</option>
-        <option value="fleisch">Fleisch</option>
-        <option value="fisch">Fisch</option>
-        <option value="milchprodukte">Milchprodukte</option>
-        <option value="obst">Obst</option>
+        <option value="Gemüse">Gemüse</option>
+        <option value="Getreideprodukte">Getreideprodukte</option>
+        <option value="Getränke">Getränke</option>
+        <option value="Fleisch">Fleisch</option>
+        <option value="Fisch">Fisch</option>
+        <option value="Milchprodukte">Milchprodukte</option>
+        <option value="Obst">Obst</option>
     </select>
 )
 module.exports = Kategorie

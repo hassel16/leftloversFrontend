@@ -1,15 +1,24 @@
 import TabellenZeile from "./TabellenZeile"
-const Tabelle = ({ ergebnisse }) => {
+const Tabelle = ({ ergebnisse, loading }) => {
     return (
-        <table>
-            <tbody>
-                {
-                    ergebnisse.map((ergebnis, key) =>
-                        <TabellenZeile ergebnis={ergebnis} key={key} id={key}/>
-                    )
-                }
-            </tbody>
-        </table>
+        (loading) ?
+            <div>Treffer werden geladen...</div> :
+            (ergebnisse.length <= 0)?
+            <div>Keine Treffer für deine Suche...</div>:
+            <table>
+                <div>{ergebnisse.length} Treffer</div>
+                <tbody>
+                    <tr>
+                        <td>
+                            {
+                                ergebnisse.map((ergebnis, key) => {
+                                    return <TabellenZeile ergebnis={ergebnis} key={key} id={key} />
+                                })
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     )
 }
 module.exports = Tabelle
