@@ -1,3 +1,17 @@
+import { getRequest } from '../../data/APICall'
+
+// const Kategorien = () => {
+//     let array = []
+//     getRequest("AngebotsService/Kategorie")
+//         .then(response => response.json())
+//         .then(responseJSON => {
+//             responseJSON.map(element => array.push(element.titel))
+//             return responseJSON
+//         })
+//         .catch(error => console.error(error))
+
+//     return array
+// }
 let Categories = {
     "all": [
         "Apfel",

@@ -1,5 +1,5 @@
 const Kategorie = ({onNewCategory=f=>f}) => (
-    <select name="kategorie" id="offer_kategorie" onChange={onNewCategory("this.id")}>
+    <select name="kategorie" id="offer_kategorie" onChange={onNewCategory}>
         <option defaultValue value="verschiedenes">Verschiedenes</option>
         <option value="gemuese">Gemüse</option>
         <option value="getreideprodukte">Getreideprodukte</option>

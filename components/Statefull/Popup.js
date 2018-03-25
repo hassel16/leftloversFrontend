@@ -4,6 +4,7 @@ import Kategorie from '../Stateless/Kategorie'
 import Label from '../Stateless/Label'
 import Offer from '../../data/Offer'
 
+
 class Popup extends Component {
     constructor(props) {
         super(props)
@@ -11,15 +12,15 @@ class Popup extends Component {
             current_city: "default city",
             current_category: "all"
         }
+        this.newCategory = this.newCategory.bind(this)
     }
     hidePopup() {
         const { _light } = this.refs
         _light.style.display = 'none';
         document.getElementById('fade').style.display = 'none'
     }
-    newCategory(category) {
-        
-        alert(category)
+    newCategory(e) {
+        this.setState({current_category: e.target.value})       
     }
     createOffer() {
         const {_city, __designation, _description, _preis} = this.refs
@@ -50,7 +51,7 @@ class Popup extends Component {
                 <input type="text" ref="_designation" placeholder="Was inserierst du?" name="bezeichnung" id="bezeichnung" required />
 
                 <Label htmlFor="kategorie" text="Kategorie" />
-                <Kategorie onNewCategory={category => this.newCategory(category)}/>
+                <Kategorie onNewCategory={this.newCategory}/>
 
                 <Label htmlFor="preis" text="Preis" />
                 <div className="_100">

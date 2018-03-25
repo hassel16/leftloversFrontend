@@ -24,7 +24,7 @@ class Ergebnis extends Component {
                 console.log(this.state.ergebnisse)
                 return responseJson
             })
-            .catch(errror => console.error(errror))
+            .catch(error => console.error(error))
     }
     render() {
         return(
