@@ -47,10 +47,10 @@ const signup = () => {
             create_div(input_city, "! Keine Stadt aus den Vorschlägen ausgewählt")
         } else {
             remove_div("! Keine Stadt aus den Vorschlägen ausgewählt")
-            const long_name = global.address_components.filter(x => x.types[0] === "locality")[0].long_name // :)
-            const lat = global.geometry.location.lat() //entweder stringify oder toString!
-            const lng = global.geometry.location.lng()
-            register.city = new City(long_name, lat, lng)
+            // const long_name = global.address_components.filter(x => x.types[0] === "locality")[0].long_name // :)
+            // const lat = global.geometry.location.lat() //entweder stringify oder toString!
+            // const lng = global.geometry.location.lng()
+            register.city = new City(global)
         }
     }
 

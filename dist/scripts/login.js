@@ -25,17 +25,17 @@ const login = () => {
         postRequest("UAAService/login", JSON.stringify(new User(input_user.value, input_password.value))) 
         .then(response => {
             remove_div("einen Moment...")
-            console.log("headers: " + response.headers.get("authorization"))
             if (response.status !== 200) {
                 create_div(input_password, "! Benutzername oder Passwort falsch")
             } else {
                 remove_div("! Benutzername oder Passwort falsch")
-                alert("anmelden hat geklappt")
+                //window.location.href = "./search.html"
             }
             return response.json()
         })
         .then(responseJson => {
-            console.log("responsetext: " + JSON.stringify(responseJson))
+            console.log("antwort " + JSON.stringify(responseJson))
+            sessionStorage.setItem("token", responseJson.token)
             return responseJson;
         })
         .catch(error => {

@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
+
 const APICall = {
     getURL(appendix) {
         return `https://leftloversgateway.azurewebsites.net/${appendix}`
@@ -26,5 +27,10 @@ const APICall = {
         }
     }
 }
+// export const asyncRequest = async () => {
+//     const response = await fetch("https://leftloversgateway.azurewebsites.net/AngebotsService/Angebot?angebotstitel=k")
+//     const json = await response.json()
+//     return json
+// }
 module.exports = APICall
 

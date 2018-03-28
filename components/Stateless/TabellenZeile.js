@@ -1,10 +1,10 @@
 const TabellenZeile = ({ ergebnis, id }) => {
-    const { foto, titel, kategorie, description, preis, createdatetime } = ergebnis
+    const { foto, titel, description, preis, createdatetime, user } = ergebnis
     return (
         <table className="innertable">
             <tbody className="border">
                 <tr className="row" key={"td1" + id}>
-                    <td id="user_cell" className="links" key={id + "user"}><a>user </a><a> msgme</a></td>
+                    <td id="user_cell" className="links" key={id + user.username}><a>{user.username} </a><a></a></td>
                     <td className="mitte titel" key={id + titel + preis}>{titel} - {preis}€</td>
                     <td className="rechts big" key={id + createdatetime}>{createdatetime}</td>
                 </tr>

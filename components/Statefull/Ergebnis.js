@@ -20,11 +20,10 @@ class Ergebnis extends Component {
                 return response.json()
             })
             .then(responseJson => {
-                console.log(JSON.stringify(responseJson))
+                console.log("ergebnisse: " + JSON.stringify(responseJson))
                 this.setState({
                     ergebnisse: responseJson
                 })
-                console.log(this.state.ergebnisse)
                 return responseJson
             })
             .catch(error => console.error(error))

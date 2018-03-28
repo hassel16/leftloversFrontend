@@ -2,13 +2,14 @@ import { Component } from 'react'
 import { render } from 'react-dom'
 import Datalist from '../Stateless/Datalist'
 import Categories from '../../data/Categories'
-import {getRequest} from '../../data/APICall'
+import {getRequest, asyncRequest} from '../../data/APICall'
 import Kategorie from '../Stateless/Kategorie'
 
 class TBody extends Component {
     constructor(props) {
         super(props)
         this.feindHoertMit = this.feindHoertMit.bind(this)
+        this.checkInput = this.checkInput.bind(this)
         this.state = {
             current_array: [...Categories["all"]],
             daniels_array: [],
@@ -16,8 +17,6 @@ class TBody extends Component {
         }
     }
     componentDidMount() {
-
-
         let {_stadt} = this.refs
         const acc = new google.maps.places.Autocomplete(_stadt, {
             //types: ['(cities)'],
@@ -46,14 +45,19 @@ class TBody extends Component {
                     }
                 })
                 //hier muss die kategorie in der json mit der current categorie abgeglichen werden
-                console.log("current array: " + this.state.current_array)
+                console.log("teilarray" + teil_array)
+                console.log("current array1: " + this.state.current_array)
                 this.setState({current_array: [...teil_array, ...this.state.current_array]})
-                console.log("Antwort: " + JSON.stringify(responseJSON))
+                console.log("current array2: " + this.state.current_array)
+                //console.log("Antwort: " + JSON.stringify(responseJSON))
                 return responseJSON
             })
             .catch(error => console.error(error))
-        //API Call
-        //this.setstate({current_array=...Categories[this.state.current_category], ...danielsArray]})
+
+        //console.log(asyncRequest().map(element => element.titel))
+    }
+    checkInput() {
+        alert("moin")
     }
     render() {
         return (
@@ -89,7 +93,7 @@ class TBody extends Component {
                     </select>
                 </th>
                 <th>
-                    <button id="find">Finden</button>
+                    <button id="find" onClick={() => this.checkInput()}>Finden</button>
                 </th>
             </tr>
         )
