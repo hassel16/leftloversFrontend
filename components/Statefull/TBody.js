@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { render } from 'react-dom'
 import Datalist from '../Stateless/Datalist'
 import Categories from '../../data/Categories'
-import {getRequest, asyncRequest} from '../../data/APICall'
+import {getRequest, getURL} from '../../data/APICall'
 import Kategorie from '../Stateless/Kategorie'
 import {create_div, remove_div} from '../../data/Factory'
 
@@ -28,7 +28,12 @@ class TBody extends Component {
             const place = acc.getPlace()
             this.setState({current_city:place})
         })
-        getRequest("UAAService/resolve")
+        //console.log(` Bearer ${sessionStorage.getItem("token")}`)
+        fetch(getURL("UAAService/resolve"), {
+            headers: new Headers({
+                "Authorization": ` Bearer ${sessionStorage.getItem("token")}`
+            })
+        })
             .then(response => {
                 if (response.status >= 200 || response.status <= 300) {
                     return response.json()
@@ -37,7 +42,7 @@ class TBody extends Component {
                 }
             })
             .then(responseJSON => {
-                //token an resolve schicken! und in sessiostorage speichern
+                console.log(JSON.stringify(responseJSON))
             })
 
         this.feindHoertMit()
