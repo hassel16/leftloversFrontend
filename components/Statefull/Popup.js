@@ -4,16 +4,16 @@ import Kategorie from '../Stateless/Kategorie'
 import Label from '../Stateless/Label'
 import Offer from '../../data/Offer'
 import { create_div, remove_div } from '../../data/Factory'
-import {postRequest} from '../../data/APICall'
+import {postRequest, getURL} from '../../data/APICall'
 import City from '../../data/City'
 import fetch from 'isomorphic-fetch'
-
+import {token} from '../../data/Token'
 
 class Popup extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            current_city: undefined, //hier wird die userstadt gezogen
+            current_city: undefined, 
             current_category: "Verschiedenes",
             current_image: undefined
         }
@@ -117,6 +117,27 @@ class Popup extends Component {
             this.setState({ current_city: place })
         })
         document.getElementById("fade").onclick = () => this.hidePopup()
+        
+        if (token) {
+            fetch(getURL("UAAService/resolve"), {
+                headers: new Headers({
+                    "Authorization": ` Bearer ${token}`
+                })
+            })
+                .then(response => {
+                    if (response.status >= 200 || response.status <= 300) {
+                        return response.json()
+                    } else {
+                        return new Error(response.status)
+                    }
+                })
+                .then(responseJSON => {
+                    //sessionStorage.setItem("user", responseJSON)
+                    this.setState({current_city: responseJSON.city.name_details})
+                    _city.value = this.state.current_city
+                })
+        }
+
     }
     render() {
         return (

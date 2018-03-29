@@ -45,7 +45,7 @@ class TBody extends Component {
                     }
                 })
                 .then(responseJSON => {
-                    sessionStorage.setItem("user", responseJSON)
+                    //sessionStorage.setItem("user", responseJSON)
                     this.setState({current_city: responseJSON.city.name_details})
                     _stadt.value = this.state.current_city
                 })

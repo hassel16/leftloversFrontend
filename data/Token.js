@@ -12,6 +12,7 @@ export const inOrOut = () => {
             inorout.addEventListener("click", () => {
                 if (exists()) {
                     sessionStorage.removeItem("token")
+                    sessionStorage.removeItem("user")
                 }
             })
 }
