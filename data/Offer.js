@@ -1,11 +1,14 @@
 class Offer {
-    constructor(city, titel, kategorie, preis, description) {
+    constructor(city, titel, kategorie, preis, description, fotourl) {
         this.city = {
             city
         }
         this.titel = titel
         this.kategorie = {
             titel: kategorie
+        }
+        this.foto = {
+            fotourl: fotourl
         }
         this.preis = preis
         this.description = description

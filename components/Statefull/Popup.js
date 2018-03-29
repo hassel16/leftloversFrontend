@@ -14,7 +14,8 @@ class Popup extends Component {
         super(props)
         this.state = {
             current_city: undefined, //hier wird die userstadt gezogen
-            current_category: "Verschiedenes"
+            current_category: "Verschiedenes",
+            current_image: undefined
         }
         this.newCategory = this.newCategory.bind(this)
         //bond uploadfile?
@@ -37,7 +38,7 @@ class Popup extends Component {
               return reader.read().then(function(result) {
                 if (result.done) {
                   // Return final response from Cloudinary to next handler
-                  console.log('decodedValue', decodedValue);
+                  //console.log('decodedValue', decodedValue);
                   return (JSON.parse(decodedValue));
                 }
                 decodedValue = decoder.decode(result.value || new Uint8Array, {
@@ -61,7 +62,7 @@ class Popup extends Component {
         })
         .then(progress)
         .then(response => {
-            console.log(response.secure_url)
+            this.setState({current_image: response.secure_url})
             return response
         })  //.data.secure_url))
         .catch(error => console.error(error))
@@ -69,8 +70,7 @@ class Popup extends Component {
     }
     createOffer() {
         const { _city, _designation, _description, _preis, _euro } = this.refs
-        let offer = new Offer(new City(this.state.current_city), _designation.value, this.state.current_category, _preis.value, _description.value)
-        console.log(JSON.stringify(offer))
+        let offer = new Offer(new City(this.state.current_city, _city.value), _designation.value, this.state.current_category, _preis.value, _description.value, this.state.current_image)
         if (!offer.isNotNull(offer.city)) {
             create_div(_city, "! Bitte wählen Sie eine Stadt aus")
             offer.setFlag()

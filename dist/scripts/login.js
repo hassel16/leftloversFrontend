@@ -27,11 +27,13 @@ const login = () => {
             remove_div("einen Moment...")
             if (response.status !== 200) {
                 create_div(input_password, "! Benutzername oder Passwort falsch")
+                return new Error(response.statusText)
             } else {
                 remove_div("! Benutzername oder Passwort falsch")
+                return response.json()
                 //window.location.href = "./search.html"
             }
-            return response.json()
+
         })
         .then(responseJson => {
             console.log("antwort " + JSON.stringify(responseJson))

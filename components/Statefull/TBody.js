@@ -4,6 +4,7 @@ import Datalist from '../Stateless/Datalist'
 import Categories from '../../data/Categories'
 import {getRequest, asyncRequest} from '../../data/APICall'
 import Kategorie from '../Stateless/Kategorie'
+import {create_div, remove_div} from '../../data/Factory'
 
 class TBody extends Component {
     constructor(props) {
@@ -27,6 +28,18 @@ class TBody extends Component {
             const place = acc.getPlace()
             this.setState({current_city:place})
         })
+        getRequest("UAAService/resolve")
+            .then(response => {
+                if (response.status >= 200 || response.status <= 300) {
+                    return response.json()
+                } else {
+                    return new Error(response.status)
+                }
+            })
+            .then(responseJSON => {
+                //token an resolve schicken! und in sessiostorage speichern
+            })
+
         this.feindHoertMit()
     }
 
@@ -58,6 +71,8 @@ class TBody extends Component {
     }
     checkInput() {
         alert("moin")
+        let sauber = true
+
     }
     render() {
         return (

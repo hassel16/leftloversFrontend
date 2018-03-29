@@ -50,7 +50,8 @@ const signup = () => {
             // const long_name = global.address_components.filter(x => x.types[0] === "locality")[0].long_name // :)
             // const lat = global.geometry.location.lat() //entweder stringify oder toString!
             // const lng = global.geometry.location.lng()
-            register.city = new City(global)
+            register.city = new City(global, input_city.value)
+            console.log(JSON.stringify(register))
         }
     }
 
