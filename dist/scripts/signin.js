@@ -117,7 +117,8 @@ const signup = () => {
                 }
                 console.log("flag: " + register.flag)
                 if(register.flag) {
-                    alert("registrieren hat funktioniert")
+                    alert("Registrieren erfolgreich! Bitte melden Sie sich an")
+                    window.location.href="./login.html"
                 }
                 return responseJson
             })
