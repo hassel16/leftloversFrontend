@@ -1,12 +1,25 @@
 import fetch from 'isomorphic-fetch'
+import {token} from './Token'
 
 
 const APICall = {
     getURL(appendix) {
-        return `https://leftloversgateway.azurewebsites.net/${appendix}`
+        if (token !== undefined) {
+            return `https://leftloversgateway.azurewebsites.net/${appendix}?token=${token}`
+        } else {
+            return `https://leftloversgateway.azurewebsites.net/${appendix}`
+        }
     },
-    getRequest(appendix) {
-        return fetch(APICall.getURL(appendix))
+    getRequest(appendix, postappendix = "") {
+        if (postappendix === "") {
+            return fetch(APICall.getURL(appendix))
+        } else {
+            if (token === undefined) {
+                return fetch(APICall.getURL(appendix) + "?")
+            } else {
+                return fetch(APICall.getURL(appendix) + "&")
+            }
+        }
     },
     postRequest(appendix, body) {
         return fetch(APICall.getURL(appendix), {
@@ -18,10 +31,8 @@ const APICall = {
         })
     },
     checkForExceptions(response) {
-        if (response.status === 201) {
+        if (response.status >= 200 && response.status <= 300) {
             console.log(response.headers)
-        } else if (response.status === 400) {
-
         } else {
             console.error(response)
         }

@@ -5,6 +5,7 @@ import Categories from '../../data/Categories'
 import {getRequest, getURL} from '../../data/APICall'
 import Kategorie from '../Stateless/Kategorie'
 import {create_div, remove_div} from '../../data/Factory'
+import {token} from '../../data/Token'
 
 class TBody extends Component {
     constructor(props) {
@@ -14,11 +15,12 @@ class TBody extends Component {
         this.state = {
             current_array: [...Categories["all"]],
             daniels_array: [],
-            current_city: "defaultCity" //DB-Call notwendig
+            current_city: ""
         }
     }
     componentDidMount() {
-        let {_stadt} = this.refs
+        let {_stadt, _text} = this.refs
+
         const acc = new google.maps.places.Autocomplete(_stadt, {
             //types: ['(cities)'],
             componentRestrictions: { country: 'de' }
@@ -28,23 +30,26 @@ class TBody extends Component {
             const place = acc.getPlace()
             this.setState({current_city:place})
         })
-        //console.log(` Bearer ${sessionStorage.getItem("token")}`)
-        fetch(getURL("UAAService/resolve"), {
-            headers: new Headers({
-                "Authorization": ` Bearer ${sessionStorage.getItem("token")}`
+    
+        if (token) {
+            fetch(getURL("UAAService/resolve"), {
+                headers: new Headers({
+                    "Authorization": ` Bearer ${token}`
+                })
             })
-        })
-            .then(response => {
-                if (response.status >= 200 || response.status <= 300) {
-                    return response.json()
-                } else {
-                    return new Error(response.status)
-                }
-            })
-            .then(responseJSON => {
-                console.log(JSON.stringify(responseJSON))
-            })
-
+                .then(response => {
+                    if (response.status >= 200 || response.status <= 300) {
+                        return response.json()
+                    } else {
+                        return new Error(response.status)
+                    }
+                })
+                .then(responseJSON => {
+                    sessionStorage.setItem("user", responseJSON)
+                    this.setState({current_city: responseJSON.city.name_details})
+                    _stadt.value = this.state.current_city
+                })
+        }
         this.feindHoertMit()
     }
 
@@ -52,7 +57,7 @@ class TBody extends Component {
         const { _category, _text } = this.refs
         const current_value = _category.options[_category.selectedIndex].value
         this.setState({ current_array: [...Categories[current_value]] })
-        getRequest(`AngebotsService/Angebot?angebotstitel=${_text.value}`)
+        getRequest(`AngebotsService/Angebot`, `angebotstitel=${_text.value}`)
             .then(response => response.json())
             .then(responseJSON => {
                 let teil_array = []
@@ -67,12 +72,10 @@ class TBody extends Component {
                 console.log("current array1: " + this.state.current_array)
                 this.setState({current_array: [...teil_array, ...this.state.current_array]})
                 console.log("current array2: " + this.state.current_array)
-                //console.log("Antwort: " + JSON.stringify(responseJSON))
+
                 return responseJSON
             })
             .catch(error => console.error(error))
-
-        //console.log(asyncRequest().map(element => element.titel))
     }
     checkInput() {
         alert("moin")
@@ -96,11 +99,11 @@ class TBody extends Component {
                     {/* {<Kategorie />} */}
                 </th>
                 <th>
-                    <input ref="_text" type="text" placeholder="Was suchst du?" id="angebot_suchen" list="elements" onInput={() => this.feindHoertMit()} />
+                    <input placeholder="Was suchst du?" ref="_text" type="text"  id="angebot_suchen" list="elements" onInput={() => this.feindHoertMit()} />
                     <Datalist id="elements" elementList={this.state.current_array} />
                 </th>
                 <th>
-                    <input ref="_stadt" type="text" placeholder="Stadt" />
+                    <input ref="_stadt" type="text" /> {/*placeholder="Stadt"*/}
                 </th>
                 <th>
                     <select>

@@ -1,11 +1,5 @@
-/*
-import React from 'react'
-import { render } from 'react-dom'
+import {inOrOut} from '../../data/Token'
+window.addEventListener("load", () => {
+    inOrOut()
+})
 
-
-window.React = React
-render(
-    <Login />,
-    document.getElementById('root') //root
-)
-*/
