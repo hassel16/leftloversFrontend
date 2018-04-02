@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch'
 import {token} from './Token'
 
 
+    
 const APICall = {
     getURL(appendix) {
         if (token !== undefined) {
@@ -43,5 +44,5 @@ const APICall = {
 //     const json = await response.json()
 //     return json
 // }
-module.exports = APICall
+module.exports = APICall//, asyncRequest}
 

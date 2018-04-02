@@ -3,6 +3,7 @@ const webpack = require("webpack");
 module.exports = {
     //devtool: 'source-map', //hinzugefügt
     entry: {
+        //main: 'babel-polyfill', // eingefügt, entsprechend auch in packagejson, das polyfill rausnhemen
         index:  './dist/scripts/index.js',//alt: ./index.js
         signin: './dist/scripts/signin.js',
         login:  './dist/scripts/login.js',
@@ -21,7 +22,7 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015', 'react'],
+                    presets: ['env', 'es2015', 'react'], //es2015, react früher
                 },
             },
         ],
