@@ -31,8 +31,8 @@ class TBody extends Component {
             const place = acc.getPlace()
             this.setState({ current_city: place })
         })
-
-        if (token) {
+        console.log(sessionStorage.getItem("token"))
+        if (token !== undefined) {
             fetch(getURL("UAAService/resolve"), {
                 headers: new Headers({
                     "Authorization": ` Bearer ${token}`
@@ -46,7 +46,6 @@ class TBody extends Component {
                     }
                 })
                 .then(responseJSON => {
-                    //sessionStorage.setItem("user", responseJSON)
                     this.setState({ current_city: responseJSON.city.name_details })
                     _stadt.value = this.state.current_city
                 })
@@ -65,7 +64,6 @@ class TBody extends Component {
             .then(responseJSON => {
                 let teil_array = []
                 responseJSON.map(element => {
-                    console.log(element.kategorie.titel + " current " + current_value)
                     if (current_value === "all" || element.kategorie.titel === current_value || element.kategorie.titel === "Verschiedenes") {
                         return(teil_array.push(element.titel))
                     }

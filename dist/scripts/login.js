@@ -30,7 +30,6 @@ const login = () => {
                 return new Error(response.statusText)
             } else {
                 remove_div("! Benutzername oder Passwort falsch")
- 
                 return response.json()
             }
 
