@@ -17,14 +17,23 @@ class Details extends Component {
         this.user = user
         this.standort = standort
         this.hideDetails = this.hideDetails.bind(this)
+        this.dismiss = this.dismiss.bind(this)
+
+    }
+    dismiss() {
+        if (this.props.unmountMe !== undefined) {
+            this.props.unmountMe()
+        }
+        
     }
     hideDetails(){
         const _light = document.getElementById("light_details")
         _light.style.display = 'none';
         document.getElementById('fade').style.display = 'none'
-        
+        this.dismiss()
     }
     componentDidMount() {
+        console.log(JSON.stringify(this.titel))
         const fadeDiv = document.getElementById("fade")
         const lightDiv = document.getElementById('light_details')
         //if (abbrechenButton !== null && fadeDiv !== null && lightDiv !== null) {

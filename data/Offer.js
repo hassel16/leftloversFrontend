@@ -1,16 +1,20 @@
 class Offer {
-    constructor(city, titel, kategorie, preis, description, fotourl) {
+    constructor(city, titel, kategorie, kategorieId, preis, description, fotourl="") {
         this.city = city
 
         this.titel = titel
         this.kategorie = {
-            titel: kategorie
+            titel: kategorie,
+            kategorieid: kategorieId
         }
         this.foto = {
             fotourl: fotourl
         }
         this.preis = preis
         this.description = description
+        this.user = {
+            userid: undefined
+        }
         this.flag = true
 
         this.isNotNull = this.isNotNull.bind(this)

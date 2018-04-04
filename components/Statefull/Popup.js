@@ -15,10 +15,12 @@ class Popup extends Component {
         this.state = {
             current_city: undefined, 
             current_category: "Verschiedenes",
-            current_image: undefined
+            current_category_id: 9,
+            current_image: undefined,
+            current_user: undefined
         }
         this.newCategory = this.newCategory.bind(this)
-        //bond uploadfile?
+        this.createOffer = this.createOffer.bind(this)
     }
     hidePopup() {
         const { _light } = this.refs
@@ -26,7 +28,7 @@ class Popup extends Component {
         document.getElementById('fade').style.display = 'none'
     }
     newCategory(e) {
-        this.setState({ current_category: e.target.value })
+        this.setState({ current_category: e.target.value, current_category_id: parseInt(e.target.kategorieid) })
     }
     uploadFile(event) {
         function progress(response) {
@@ -70,7 +72,7 @@ class Popup extends Component {
     }
     createOffer() {
         const { _city, _designation, _description, _preis, _euro } = this.refs
-        let offer = new Offer(this.state.current_city, _designation.value, this.state.current_category, _preis.value, _description.value, this.state.current_image)
+        let offer = new Offer(this.state.current_city, _designation.value, this.state.current_category, this.state.current_category_id, parseInt(_preis.value), _description.value, this.state.current_image)
         if (!offer.isNotNull(offer.city) && this.state.current_city === undefined) {
             create_div(_city, "! Bitte wählen Sie eine Stadt aus")
             offer.setFlag()
@@ -97,6 +99,7 @@ class Popup extends Component {
             remove_div("! Bitte geben Sie einen validen Preis ein")
         }
         if (offer.flag) {
+            offer.user.userid = this.state.current_user
             console.log(JSON.stringify(offer))
             postRequest("AngebotsService/Angebot", JSON.stringify(offer))
                 .then(response => response.json)
@@ -105,6 +108,7 @@ class Popup extends Component {
                     return responseJSON
                 })
                 .catch(error => console.error(error))
+            this.hidePopup()
         }
     }
     componentDidMount() {
@@ -132,6 +136,7 @@ class Popup extends Component {
                 .then(responseJSON => {
                     //sessionStorage.setItem("user", responseJSON)
                     this.setState({current_city: responseJSON.city})
+                    this.setState({current_user: responseJSON.userid})
                     _city.value = this.state.current_city.name_details
                 })
         }
