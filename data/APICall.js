@@ -1,33 +1,50 @@
 import fetch from 'isomorphic-fetch'
-import {token} from './Token'
+import {token, exists} from './Token'
 
 
     
 const APICall = {
     getURL(appendix) {
-        if (token !== undefined) {
-            return `https://leftloversgateway.azurewebsites.net/${appendix}?token=${token}`
-        } else {
             return `https://leftloversgateway.azurewebsites.net/${appendix}`
+
+    },
+    headerToken(line=false) {
+        if (line === false) {
+            if (exists()) {
+                return {headers:(new Headers({
+                    "Authorization": token
+                }))}
+            }
+        } else {
+            if (exists()) {
+                return new Headers({
+                    "content-type": "application/json",
+                    "Authorization": token
+                })
+            } else {
+                return new Headers({
+                    "content-type": "application/json"
+                })
+            }
         }
     },
     getRequest(appendix, postappendix = "") {
         if (postappendix === "") {
-            return fetch(APICall.getURL(appendix))
+            return fetch(APICall.getURL(appendix), APICall.headerToken())
         } else {
-            if (token === undefined) {
-                return fetch(APICall.getURL(appendix) + "?")
-            } else {
-                return fetch(APICall.getURL(appendix) + "&")
-            }
+            return fetch((APICall.getURL(appendix) + "?"), APICall.headerToken())
         }
     },
     postRequest(appendix, body) {
         return fetch(APICall.getURL(appendix), {
             method: "POST",
+            headers: APICall.headerToken(true),
+            /*
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                //"Authorization": token
             },
+            */
             body: body
         })
     },

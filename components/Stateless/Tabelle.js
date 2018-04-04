@@ -1,5 +1,5 @@
 import TabellenZeile from "./TabellenZeile"
-const Tabelle = ({ ergebnisse, loading }) => {
+const Tabelle = ({ ergebnisse, loading, onDetails=f=>f }) => {
     return (
         (loading) ?
             <div>Treffer werden geladen...</div> :
@@ -12,7 +12,7 @@ const Tabelle = ({ ergebnisse, loading }) => {
                         <td>
                             {
                                 ergebnisse.map((ergebnis, key) => {
-                                    return <TabellenZeile ergebnis={ergebnis} key={key} id={key} />
+                                    return <TabellenZeile ergebnis={ergebnis} key={key} id={key} onDetails={() => onDetails(ergebnis)}/>
                                 })
                             }
                         </td>

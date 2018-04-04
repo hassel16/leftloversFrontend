@@ -2,11 +2,11 @@ import { Component } from 'react'
 import { render } from 'react-dom'
 import Datalist from '../Stateless/Datalist'
 import Categories from '../../data/Categories'
-import { getRequest, getURL } from '../../data/APICall'
-
+import { getRequest } from '../../data/APICall'
+import City from '../../data/City'
 import Kategorie from '../Stateless/Kategorie'
 import { create_div, remove_div } from '../../data/Factory'
-import { token } from '../../data/Token'
+import { token, exists } from '../../data/Token'
 
 class TBody extends Component {
     constructor(props) {
@@ -16,7 +16,8 @@ class TBody extends Component {
         this.state = {
             current_array: [...Categories["all"]],
             daniels_array: [],
-            current_city: ""
+            current_category: "all",
+            current_city: undefined // ""
         }
     }
     componentDidMount() {
@@ -29,15 +30,11 @@ class TBody extends Component {
 
         google.maps.event.addListener(acc, 'place_changed', () => {
             const place = acc.getPlace()
-            this.setState({ current_city: place })
+            this.setState({ current_city: new City(place, _stadt.value) })
         })
         console.log(sessionStorage.getItem("token"))
-        if (token !== undefined) {
-            fetch(getURL("UAAService/resolve"), {
-                headers: new Headers({
-                    "Authorization": ` Bearer ${token}`
-                })
-            })
+        if (exists()) {
+            getRequest("UAAService/resolve")
                 .then(response => {
                     if (response.status >= 200 || response.status <= 300) {
                         return response.json()
@@ -46,40 +43,69 @@ class TBody extends Component {
                     }
                 })
                 .then(responseJSON => {
-                    this.setState({ current_city: responseJSON.city.name_details })
-                    _stadt.value = this.state.current_city
+                    sessionStorage.setItem("user", responseJSON)
+                    this.setState({ current_city: responseJSON.city }) //.name_details
+                    _stadt.value = this.state.current_city.name_details
                 })
         }
         this.feindHoertMit()
     }
- 
+
 
     feindHoertMit() {
         const { _category, _text } = this.refs
         const current_value = _category.options[_category.selectedIndex].value
+
+        this.setState({current_category: current_value})
         this.setState({ current_array: [...Categories[current_value]] })
-        
+
         getRequest(`AngebotsService/Angebot`, `angebotstitel=${_text.value}`)
             .then(response => response.json())
             .then(responseJSON => {
                 let teil_array = []
                 responseJSON.map(element => {
                     if (current_value === "all" || element.kategorie.titel === current_value || element.kategorie.titel === "Verschiedenes") {
-                        return(teil_array.push(element.titel))
+                        return (teil_array.push(element.titel))
                     }
                 })
+
                 let distinctArray = [...teil_array, ...this.state.current_array]
-                this.setState({current_array: distinctArray.filter((item, pos) => distinctArray.indexOf(item) == pos)})
+                this.setState({ current_array: distinctArray.filter((item, pos) => distinctArray.indexOf(item) == pos) })
 
                 return responseJSON
             })
             .catch(error => console.error(error))
-            
+
     }
     checkInput() {
-        alert("moin")
-        let sauber = true
-
+        const { _stadt, _text } = this.refs
+        if (this.state.current_city === undefined) {
+            create_div(_stadt, "! Wähle einen Standort aus")
+        } else {
+            remove_div("! Wähle einen Standort aus")
+            let titel = (text) => {
+                if (text === "" || text === undefined) {
+                    return ""
+                } else {
+                    return `angebotstitel=${text}`
+                }
+            }
+            getRequest("AngebotsService/Angebot", `angebotstitel=Put`)//titel(_text.value))
+                .then(response => response.json())
+                .then(responseJSON => {
+                    let ergebnisArray = []
+                    const currentKategorie = this.state.current_category
+                    console.log(currentKategorie)
+                    responseJSON.map(element => {
+                        if (currentKategorie === "all" || element.kategorie.titel === currentKategorie || element.kategorie.titel === "Verschiedenes") {
+                            return (ergebnisArray.push(element.titel))
+                        }
+                    })
+                    console.log("ergebnisArray: " + ergebnisArray)
+                    return responseJSON
+                })
+                .catch(error => console.error(error))
+        }
     }
     render() {
         return (

@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import {getRequest} from '../../data/APICall'
 import {create_div, remove_div} from "../../data/Factory"
 import Tabelle from "../Stateless/Tabelle"
+import Details from "./Details"
+import {exists} from "../../data/Token"
 
 class Ergebnis extends Component {
     constructor(props) {
@@ -10,6 +12,19 @@ class Ergebnis extends Component {
         this.state = {
             loading: false,
             ergebnisse: []
+        }
+    }
+    showDetails(ergebnis) {
+        console.log(JSON.stringify(ergebnis))
+        if(exists()) {
+            render(
+                <Details ergebnis={ergebnis}/>,
+                document.getElementById("popup_anker") //such_einstellungen
+            )
+            document.getElementById('light_details').style.display = 'block'
+            document.getElementById('fade').style.display = 'block'
+        } else {
+            alert("du musst dich anmelden, um dieses feature genießen zu können")
         }
     }
     componentDidMount() {
@@ -20,7 +35,6 @@ class Ergebnis extends Component {
                 return response.json()
             })
             .then(responseJson => {
-                console.log("ergebnisse: " + JSON.stringify(responseJson))
                 this.setState({
                     ergebnisse: responseJson
                 })
@@ -30,7 +44,7 @@ class Ergebnis extends Component {
     }
     render() {
         return(
-            <Tabelle ergebnisse={this.state.ergebnisse} loading={this.state.loading}/>
+            <Tabelle ergebnisse={this.state.ergebnisse} loading={this.state.loading} onDetails={this.showDetails}/>
         )
     }
 }

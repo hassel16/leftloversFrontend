@@ -4,10 +4,10 @@ import Kategorie from '../Stateless/Kategorie'
 import Label from '../Stateless/Label'
 import Offer from '../../data/Offer'
 import { create_div, remove_div } from '../../data/Factory'
-import {postRequest, getURL} from '../../data/APICall'
+import {postRequest, getRequest} from '../../data/APICall'
 import City from '../../data/City'
 import fetch from 'isomorphic-fetch'
-import {token} from '../../data/Token'
+import {token, exists} from '../../data/Token'
 
 class Popup extends Component {
     constructor(props) {
@@ -70,8 +70,8 @@ class Popup extends Component {
     }
     createOffer() {
         const { _city, _designation, _description, _preis, _euro } = this.refs
-        let offer = new Offer(new City(this.state.current_city, _city.value), _designation.value, this.state.current_category, _preis.value, _description.value, this.state.current_image)
-        if (!offer.isNotNull(offer.city)) {
+        let offer = new Offer(this.state.current_city, _designation.value, this.state.current_category, _preis.value, _description.value, this.state.current_image)
+        if (!offer.isNotNull(offer.city) && this.state.current_city === undefined) {
             create_div(_city, "! Bitte wählen Sie eine Stadt aus")
             offer.setFlag()
         } else {
@@ -89,6 +89,7 @@ class Popup extends Component {
         } else {
             remove_div("! Bitte geben Sie einen Preis für Ihr Angebot an")
         }
+        console.log("offer: " + JSON.stringify(offer))
         if (!offer.checkPrice()) {
             create_div(_euro, "! Bitte geben Sie einen validen Preis ein")
             offer.setFlag()
@@ -100,6 +101,7 @@ class Popup extends Component {
             postRequest("AngebotsService/Angebot", JSON.stringify(offer))
                 .then(response => response.json)
                 .then(responseJSON => {
+                    console.log("postrequest mit offer: " + JSON.stringify(offer))
                     return responseJSON
                 })
                 .catch(error => console.error(error))
@@ -114,16 +116,12 @@ class Popup extends Component {
 
         google.maps.event.addListener(acc, 'place_changed', () => {
             const place = acc.getPlace()
-            this.setState({ current_city: place })
+            this.setState({ current_city: new City(place, _city.value) })
         })
         document.getElementById("fade").onclick = () => this.hidePopup()
         
-        if (token) {
-            fetch(getURL("UAAService/resolve"), {
-                headers: new Headers({
-                    "Authorization": ` Bearer ${token}`
-                })
-            })
+        if (exists()) {
+            getRequest("UAAService/resolve")
                 .then(response => {
                     if (response.status >= 200 || response.status <= 300) {
                         return response.json()
@@ -133,8 +131,8 @@ class Popup extends Component {
                 })
                 .then(responseJSON => {
                     //sessionStorage.setItem("user", responseJSON)
-                    this.setState({current_city: responseJSON.city.name_details})
-                    _city.value = this.state.current_city
+                    this.setState({current_city: responseJSON.city})
+                    _city.value = this.state.current_city.name_details
                 })
         }
 

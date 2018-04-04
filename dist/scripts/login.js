@@ -35,7 +35,7 @@ const login = () => {
 
         })
         .then(responseJson => {
-            sessionStorage.setItem("token", responseJson.token)
+            sessionStorage.setItem("token", ` Bearer ${responseJson.token}`)
             window.location.href = "./search.html"
             return responseJson;
         })
