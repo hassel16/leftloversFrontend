@@ -77,6 +77,9 @@ input, select, textarea {
 table {
     width:100%;
 }
+.full {
+    width: 100%;
+}
 textarea {
     resize: vertical;
     font-family: "Arial";
@@ -133,6 +136,9 @@ input[type="text"], input[type="file"], input[type="number"], select, textarea {
 }
 .left {
     width: 50%;
+}
+.left45 {
+    width: 45%;
 }
 .rigth {
     width: 50%;

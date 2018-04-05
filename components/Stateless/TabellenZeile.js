@@ -9,7 +9,7 @@ const TabellenZeile = ({ ergebnis, id, onDetails=f=>f }) => {
                     <td className="rechts big" key={id + createdatetime}>{createdatetime}</td>
                 </tr>
                 <tr className="row" key={"td2" + id}>
-                    <td className="links" key={id + foto.fotourl}><img className="thumbnail" src={foto.fotourl} /></td>
+                    <td className="links" key={id + "foto.fotourl"}><img className="thumbnail" src={foto.fotourl} /></td>
                     <td className="mitte" key={id + description}>{description}</td>
                     <td className="rechts big" key={id + "entfernung"}>2km entfernt</td>
                 </tr>

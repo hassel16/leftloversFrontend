@@ -14,12 +14,9 @@ class Ergebnis extends Component {
             ergebnisse: [],
             renderChild: true
         }
-        this.handleChildUnmount = this.handleChildUnmount.bind(this)
         this.showDetails = this.showDetails.bind(this)
     }
-    handleChildUnmount(){
-        this.setState({renderChild: false});
-    }
+
     showDetails(ergebnis) {
         // const hideDetails = () => {
         //     const _light = document.getElementById("light_details")
@@ -33,8 +30,8 @@ class Ergebnis extends Component {
         if(exists()) {
             console.log(JSON.stringify(ergebnis))
             render(
-                //<Details ergebnis={ergebnis} />,
-                this.state.renderChild? <Details ergebnis={ergebnis} unmountMe={this.handleChildUnmount}/>: <Details ergebnis={ergebnis} />,
+                <Details ergebnis={ergebnis} />,
+                //this.state.renderChild? <Details ergebnis={ergebnis} unmountMe={this.handleChildUnmount}/>: <Details ergebnis={ergebnis} />,
                 document.getElementById("popup_anker") //such_einstellungen
             )
             document.getElementById('light_details').style.display = 'block'
