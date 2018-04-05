@@ -36,11 +36,14 @@ const login = () => {
         })
         .then(responseJson => {
             sessionStorage.setItem("token", ` Bearer ${responseJson.token}`)
-            window.location.href = "./search.html"
-            return responseJson;
+            alert("token: " + responseJson.token)
+            if (responseJson.token != undefined) {
+                window.location.href = "./search.html"
+            }
+            return responseJson
         })
         .catch(error => {
-          return console.log(error);
+          return console.log(error)
         })
     }
 }

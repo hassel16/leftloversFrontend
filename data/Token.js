@@ -1,6 +1,6 @@
 export const token = sessionStorage.getItem("token")
 
-export const exists = () => (token !== null && token !== undefined && token.length > 10)
+export const exists = () => (token !== undefined && token !== " Bearer undefined")
 
 export const inOrOut = () => {
     const inorout = document.getElementsByClassName("in_or_out")[0]
