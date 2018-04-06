@@ -52,19 +52,25 @@ class Details extends Component {
                 <Label htmlFor="beschreibung" text="Beschreibung" />
                 <textarea name="beschreibung" value={description} readOnly></textarea>
 
-                {/*<Label htmlFor="bild" text="Bild" />*/}
+                <table>
+                    <tr className="full">
+                        <td>
+                            <img src={foto.fotourl} className="thumbnail"></img>
+                        </td>
+                        <td>
+                            <img src="../dist/images/face.png" className="thumbnail"></img>
+                        </td>
+                    </tr>
+                </table>
+                {/*
                 <div name="bild" className="full">
-                    <div className="left45">
+                    <div className="left">
                         <img src={foto.fotourl} className="thumbnail"></img>
                     </div>
-                    <div className="left45">
-                        <img src="../dist/images/face.png" className="thumbnail left"></img>
+                    <div className="left">
+                        <img src="../dist/images/face.png" className="thumbnail"></img>
                     </div>
                 </div>
-                {/*
-                <form encType="multipart/form-data" method="POST">
-                    <input name="bild" type="file" accept="image/*"  onChange={(event) => this.uploadFile(event)}/>
-                </form>
                 */}
                 <button className="left popup_button" onClick={() => console.log("kontaktieren")}>Kontaktieren</button>
                 <button className="rigth popup_button" id="abbrechen_details" onClick={() => this.hideDetails()}>Abbrechen</button>

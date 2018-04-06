@@ -114,7 +114,9 @@ class TBody extends Component {
             const tit = titel(_text.value)
             const kat = kategorie(_category.options[_category.selectedIndex].getAttribute("kategorieid"))
             const {lat, lng, long_name} = this.state.current_city
-            getRequest("AngebotsService/Angebot", `${rad}${tit}${kat}&lat=${lat}&lng=${lng}&long_name=${long_name}`)//
+            const url = `${rad}${tit}${kat}&lat=${lat}&lng=${lng}&long_name=${long_name}`
+            console.log(url)
+            getRequest("AngebotsService/Angebot", url)//
                 .then(response => response.json())
                 .then(responseJSON => {
                     let ergebnisArray = []

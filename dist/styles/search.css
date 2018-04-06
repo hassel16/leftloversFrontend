@@ -96,7 +96,6 @@ input::-webkit-calendar-picker-indicator {
     left: 15%;
     width: 70%;
     padding: 2%;
-    /* border: 16px solid  rgb(9, 78, 9); */
     background-color: white;
     z-index: 1000;
     overflow: auto;
@@ -136,10 +135,10 @@ input[type="text"], input[type="file"], input[type="number"], select, textarea {
 }
 .left {
     width: 50%;
+    height: 100%;
+
 }
-.left45 {
-    width: 45%;
-}
+
 .rigth {
     width: 50%;
 }
