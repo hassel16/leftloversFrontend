@@ -8,6 +8,8 @@ import Kategorie from '../Stateless/Kategorie'
 import { create_div, remove_div } from '../../data/Factory'
 import { token, exists } from '../../data/Token'
 import Tabelle from '../Stateless/Tabelle'
+import Details from '../Statefull/Details'
+
 
 class TBody extends Component {
     constructor(props) {
@@ -21,6 +23,21 @@ class TBody extends Component {
             current_city: undefined // ""
         }
     }
+
+    showDetails(ergebnis) {
+        if(exists()) {
+            console.log(JSON.stringify(ergebnis))
+            render(
+                <Details ergebnis={ergebnis} />,
+                document.getElementById("popup_anker") 
+            )
+            document.getElementById('light_details').style.display = 'block'
+            document.getElementById('fade').style.display = 'block'
+        } else {
+            alert("du musst dich anmelden, um dieses feature genießen zu können")
+        }
+    }
+    
     componentDidMount() {
         let { _stadt, _text } = this.refs
 
@@ -92,10 +109,12 @@ class TBody extends Component {
                 }
             }
             const kategorie = (option) => (option === 99)? "": `&kategorieid=${1}`//!!!!!!!!!!
-            const rad = _radius.options[_radius.selectedIndex].value
+            const rad = `radius=${_radius.options[_radius.selectedIndex].value}`
+            console.log(rad)
             const tit = titel(_text.value)
             const kat = kategorie(_category.options[_category.selectedIndex].getAttribute("kategorieid"))
-            getRequest("AngebotsService/Angebot", `radius=${rad}${tit}${kat}`)//
+            const {lat, lng, long_name} = this.state.current_city
+            getRequest("AngebotsService/Angebot", `${rad}${tit}${kat}&lat=${lat}&lng=${lng}&long_name=${long_name}`)//
                 .then(response => response.json())
                 .then(responseJSON => {
                     let ergebnisArray = []
@@ -110,7 +129,7 @@ class TBody extends Component {
                 })
                 .then(array => {
                     render(
-                        <Tabelle ergebnisse={array} loading={false} /*onDetails={this.showDetails}*//>,
+                        <Tabelle ergebnisse={array} loading={false} onDetails={this.showDetails} />,
                         document.getElementById("such_list")
                     ) 
                 })

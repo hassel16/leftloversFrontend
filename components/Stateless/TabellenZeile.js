@@ -1,5 +1,6 @@
 const TabellenZeile = ({ ergebnis, id, onDetails=f=>f }) => {
-    const { user, titel, preis, createdatetime, foto, description } = ergebnis
+    const { user, titel, preis, createdatetime, foto, description, entfernung } = ergebnis
+
     return (
         <table className="innertable">
             <tbody className="border">
@@ -11,7 +12,7 @@ const TabellenZeile = ({ ergebnis, id, onDetails=f=>f }) => {
                 <tr className="row" key={"td2" + id}>
                     <td className="links" key={id + "foto.fotourl"}><img className="thumbnail" src={foto.fotourl} /></td>
                     <td className="mitte" key={id + description}>{description}</td>
-                    <td className="rechts big" key={id + "entfernung"}>2km entfernt</td>
+                    <td className="rechts big" key={id + "entfernung"}>{(entfernung === undefined)? "gib einen Standort an": `${entfernung}km`}</td>
                 </tr>
             </tbody>
         </table>
