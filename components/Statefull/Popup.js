@@ -28,7 +28,7 @@ class Popup extends Component {
         document.getElementById('fade').style.display = 'none'
     }
     newCategory(e) {
-        this.setState({ current_category: e.target.value, current_category_id: parseInt(e.target.kategorieid) })
+        this.setState({ current_category: e.target.value, current_category_id: parseInt(e.target.getAttribute("kategorieid")) })
     }
     uploadFile(event) {
         function progress(response) {
@@ -91,7 +91,6 @@ class Popup extends Component {
         } else {
             remove_div("! Bitte geben Sie einen Preis für Ihr Angebot an")
         }
-        console.log("offer: " + JSON.stringify(offer))
         if (!offer.checkPrice()) {
             create_div(_euro, "! Bitte geben Sie einen validen Preis ein")
             offer.setFlag()
@@ -100,7 +99,6 @@ class Popup extends Component {
         }
         if (offer.flag) {
             offer.user.userid = this.state.current_user
-            console.log(JSON.stringify(offer))
             postRequest("AngebotsService/Angebot", JSON.stringify(offer))
                 .then(response => response.json)
                 .then(responseJSON => {

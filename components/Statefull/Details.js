@@ -62,16 +62,6 @@ class Details extends Component {
                         </td>
                     </tr>
                 </table>
-                {/*
-                <div name="bild" className="full">
-                    <div className="left">
-                        <img src={foto.fotourl} className="thumbnail"></img>
-                    </div>
-                    <div className="left">
-                        <img src="../dist/images/face.png" className="thumbnail"></img>
-                    </div>
-                </div>
-                */}
                 <button className="left popup_button" onClick={() => console.log("kontaktieren")}>Kontaktieren</button>
                 <button className="rigth popup_button" id="abbrechen_details" onClick={() => this.hideDetails()}>Abbrechen</button>
 
