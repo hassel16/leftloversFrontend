@@ -5,7 +5,7 @@ const Tabelle = ({ ergebnisse, loading, onDetails=f=>f }) => {
             <div>Treffer werden geladen...</div> :
             (ergebnisse.length <= 0)?
             <div>Keine Treffer für deine Suche...</div>:
-            <table>
+            <table className="grey">
                 <div>{ergebnisse.length} Treffer</div>
                 <tbody>
                     <tr>
