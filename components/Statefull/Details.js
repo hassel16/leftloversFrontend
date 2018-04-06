@@ -31,12 +31,12 @@ class Details extends Component {
 
 
     render() {
-        const { titel, description, createdatetime, kategorie, preis, foto, user, standort } = this.props.ergebnis
+        const { titel, description, createdatetime, kategorie, preis, foto, user, city } = this.props.ergebnis
         return (
             <div className="popup" id="light_details">
 
                 <Label htmlFor="city" text="Stadt" />
-                <input type="text" name="city" id="city_details" value={standort.long_name} readOnly />
+                <input type="text" name="city" id="city_details" value={city.long_name} readOnly />
 
                 <Label htmlFor="bezeichnung" text="Bezeichnung" />
                 <input ref="_text" type="text" name="bezeichnung" id="bezeichnung_details" value={titel} readOnly />

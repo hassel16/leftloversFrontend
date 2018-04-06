@@ -18,33 +18,14 @@ class Ergebnis extends Component {
     }
 
     showDetails(ergebnis) {
-        // const hideDetails = () => {
-        //     const _light = document.getElementById("light_details")
-        //     _light.style.display = 'none';
-        //     document.getElementById('fade').style.display = 'none'
-        // }
-    
-
-
-
         if(exists()) {
             console.log(JSON.stringify(ergebnis))
             render(
                 <Details ergebnis={ergebnis} />,
-                //this.state.renderChild? <Details ergebnis={ergebnis} unmountMe={this.handleChildUnmount}/>: <Details ergebnis={ergebnis} />,
-                document.getElementById("popup_anker") //such_einstellungen
+                document.getElementById("popup_anker") 
             )
             document.getElementById('light_details').style.display = 'block'
             document.getElementById('fade').style.display = 'block'
-            // const abbrechenButton = document.getElementById("abbrechen_details")
-            // const fadeDiv = document.getElementById("fade")
-            // const lightDiv = document.getElementById('light_details')
-            // //if (abbrechenButton !== null && fadeDiv !== null && lightDiv !== null) {
-            //     abbrechenButton.onclick = () => hideDetails()
-            //     fadeDiv.onclick = () => hideDetails()
-            //     lightDiv.style.display = 'block'
-            //     fadeDiv.style.display = 'block'
-            // //}
         } else {
             alert("du musst dich anmelden, um dieses feature genießen zu können")
         }

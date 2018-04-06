@@ -32,7 +32,7 @@ const APICall = {
         if (postappendix === "") {
             return fetch(APICall.getURL(appendix), APICall.headerToken())
         } else {
-            return fetch((APICall.getURL(appendix) + "?"), APICall.headerToken())
+            return fetch((APICall.getURL(appendix) + "?" + postappendix), APICall.headerToken())
         }
     },
     postRequest(appendix, body) {

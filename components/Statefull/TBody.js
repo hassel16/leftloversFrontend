@@ -7,6 +7,7 @@ import City from '../../data/City'
 import Kategorie from '../Stateless/Kategorie'
 import { create_div, remove_div } from '../../data/Factory'
 import { token, exists } from '../../data/Token'
+import Tabelle from '../Stateless/Tabelle'
 
 class TBody extends Component {
     constructor(props) {
@@ -78,32 +79,44 @@ class TBody extends Component {
 
     }
     checkInput() {
-        const { _stadt, _text } = this.refs
+        const { _stadt, _text, _radius, _category } = this.refs
         if (this.state.current_city === undefined) {
             create_div(_stadt, "! Wähle einen Standort aus")
         } else {
             remove_div("! Wähle einen Standort aus")
-            let titel = (text) => {
+            const titel = (text) => {
                 if (text === "" || text === undefined) {
                     return ""
                 } else {
-                    return `angebotstitel=${text}`
+                    return `&angebotstitel=${text}`
                 }
             }
-            getRequest("AngebotsService/Angebot", `angebotstitel=Put`)//titel(_text.value))
+            const kategorie = (option) => (option === 99)? "": `&kategorieid=${1}`//!!!!!!!!!!
+            const rad = _radius.options[_radius.selectedIndex].value
+            const tit = titel(_text.value)
+            const kat = kategorie(_category.options[_category.selectedIndex].getAttribute("kategorieid"))
+            getRequest("AngebotsService/Angebot", `radius=${rad}${tit}${kat}`)//
                 .then(response => response.json())
                 .then(responseJSON => {
                     let ergebnisArray = []
                     const currentKategorie = this.state.current_category
-                    console.log(currentKategorie)
                     responseJSON.map(element => {
                         if (currentKategorie === "all" || element.kategorie.titel === currentKategorie || element.kategorie.titel === "Verschiedenes") {
-                            return (ergebnisArray.push(element.titel))
+                            return (ergebnisArray.push(element))
                         }
                     })
-                    console.log("ergebnisArray: " + ergebnisArray)
-                    return responseJSON
+                    console.log("ergebnisArray: " + JSON.stringify(ergebnisArray))
+                    return ergebnisArray
                 })
+                .then(array => {
+                    render(
+                        <Tabelle ergebnisse={array} loading={false} /*onDetails={this.showDetails}*//>,
+                        document.getElementById("such_list")
+                    ) 
+                })
+
+
+
                 .catch(error => console.error(error))
         }
     }
@@ -112,14 +125,14 @@ class TBody extends Component {
             <tr id="react_angebot_suchen">
                 <th>
                     <select ref="_category" onChange={() => this.feindHoertMit()}>
-                        <option defaultValue value="all">Alle Kategorien</option>
-                        <option value="Gemüse">Gemüse</option>
-                        <option value="Getreideprodukte">Getreideprodukte</option>
-                        <option value="Getränke">Getränke</option>
-                        <option value="Fleisch">Fleisch</option>
-                        <option value="Fisch">Fisch</option>
-                        <option value="Milchprodukte">Milchprodukte</option>
-                        <option value="Obst">Obst</option>
+                        <option kategorieid={99} defaultValue value="all">Alle Kategorien</option>
+                        <option kategorieid={1} value="Gemüse">Gemüse</option>
+                        <option kategorieid={4} value="Getreideprodukte">Getreideprodukte</option>
+                        <option kategorieid={5} value="Getränke">Getränke</option>
+                        <option kategorieid={2} value="Fleisch">Fleisch</option>
+                        <option kategorieid={6} value="Fisch">Fisch</option>
+                        <option kategorieid={7} value="Milchprodukte">Milchprodukte</option>
+                        <option kategorieid={8} value="Obst">Obst</option>
                     </select>
                     {/* {<Kategorie />} */}
                 </th>
@@ -131,13 +144,13 @@ class TBody extends Component {
                     <input ref="_stadt" type="text" /> {/*placeholder="Stadt"*/}
                 </th>
                 <th>
-                    <select>
-                        <option defaultValue>Ganze Stadt</option>
-                        <option>2 km</option>
-                        <option>5 km</option>
-                        <option>10 km</option>
-                        <option>20 km</option>
-                        <option>50 km</option>
+                    <select ref="_radius">
+                        <option defaultValue value={0}>Ganze Stadt</option>
+                        <option value={2}>2 km</option>
+                        <option value={5}>5 km</option>
+                        <option value={10}>10 km</option>
+                        <option value={20}>20 km</option>
+                        <option value={50}>50 km</option>
                     </select>
                 </th>
                 <th>
