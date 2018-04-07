@@ -18,7 +18,7 @@ class Ergebnis extends Component {
     }
 
     showDetails(ergebnis) {
-        window.location.href= "#top"
+        window.location.href= "#suchen_container"
         if(exists()) {
             console.log(JSON.stringify(ergebnis))
             render(
