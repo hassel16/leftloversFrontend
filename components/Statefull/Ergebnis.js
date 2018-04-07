@@ -18,6 +18,7 @@ class Ergebnis extends Component {
     }
 
     showDetails(ergebnis) {
+        window.location.href= "#top"
         if(exists()) {
             console.log(JSON.stringify(ergebnis))
             render(

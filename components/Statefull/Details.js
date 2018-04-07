@@ -50,22 +50,24 @@ class Details extends Component {
 
 
                 <Label htmlFor="beschreibung" text="Beschreibung" />
-                <textarea name="beschreibung" value={description} readOnly></textarea>
+                <textarea name="beschreibung" className="no_resize" value={description} readOnly></textarea>
 
                 <table className="text_center">
-                    <tr className="full">
-                        <td rowspan="2">
-                            <img src={foto.fotourl} className="thumbnail"></img>
-                        </td>
-                        <td>
-                            <img src="../dist/images/face.png" className="thumbnail"></img>
-                        </td>
-                    </tr>
-                    <tr className="full text_center">
-                        <td>
-                            <a className="">{user.username}</a>
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr className="full">
+                            <td rowSpan="2">
+                                <img src={foto.fotourl} className="thumbnail"></img>
+                            </td>
+                            <td>
+                                <img src="../dist/images/face.png" className="thumbnail"></img>
+                            </td>
+                        </tr>
+                        <tr className="full text_center">
+                            <td>
+                                <a className="">{user.username}</a>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <button className="left popup_button" onClick={() => console.log("kontaktieren")}>Kontaktieren</button>
                 <button className="rigth popup_button" id="abbrechen_details" onClick={() => this.hideDetails()}>Abbrechen</button>

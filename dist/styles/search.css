@@ -86,6 +86,9 @@ textarea {
     resize: vertical;
     font-family: "Arial";
 }
+.no_resize {
+    resize: none;
+}
 input::-webkit-calendar-picker-indicator {
     display: none;
 }
