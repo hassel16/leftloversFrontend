@@ -54,12 +54,30 @@ const APICall = {
         } else {
             console.error(response)
         }
+    },
+    wakeMeUp() {
+        APICall.getRequest("AngebotsService/health")
+            .then(response => response.json())
+            .then(responseJSON => {
+                console.log(JSON.stringify(responseJSON))
+            })
+            .catch(error => console.error(error))
+
+            APICall.getRequest("UAAService/health")
+            .then(response => response.json())
+            .then(responseJSON => {
+                console.log(JSON.stringify(responseJSON))
+            })
+            .catch(error => console.error(error))
+
+            APICall.getRequest("StandortService/health")
+            .then(response => response.json())
+            .then(responseJSON => {
+                console.log(JSON.stringify(responseJSON))
+            })
+            .catch(error => console.error(error))
     }
 }
-// export const asyncRequest = async () => {
-//     const response = await fetch("https://leftloversgateway.azurewebsites.net/AngebotsService/Angebot?angebotstitel=k")
-//     const json = await response.json()
-//     return json
-// }
+
 module.exports = APICall//, asyncRequest}
 

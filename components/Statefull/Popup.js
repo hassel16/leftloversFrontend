@@ -71,8 +71,9 @@ class Popup extends Component {
 
     }
     createOffer() {
+
         const { _city, _designation, _description, _preis, _euro } = this.refs
-        let offer = new Offer(this.state.current_city, _designation.value, this.state.current_category, this.state.current_category_id, parseInt(_preis.value), _description.value, this.state.current_image)
+        let offer = new Offer(this.state.current_city, _designation.value, this.state.current_category, this.state.current_category_id, _preis.value, _description.value, this.state.current_image)
         if (!offer.isNotNull(offer.city) && this.state.current_city === undefined) {
             create_div(_city, "! Bitte wählen Sie eine Stadt aus")
             offer.setFlag()

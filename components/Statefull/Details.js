@@ -52,13 +52,18 @@ class Details extends Component {
                 <Label htmlFor="beschreibung" text="Beschreibung" />
                 <textarea name="beschreibung" value={description} readOnly></textarea>
 
-                <table>
+                <table className="text_center">
                     <tr className="full">
-                        <td>
+                        <td rowspan="2">
                             <img src={foto.fotourl} className="thumbnail"></img>
                         </td>
                         <td>
                             <img src="../dist/images/face.png" className="thumbnail"></img>
+                        </td>
+                    </tr>
+                    <tr className="full text_center">
+                        <td>
+                            <a className="">{user.username}</a>
                         </td>
                     </tr>
                 </table>

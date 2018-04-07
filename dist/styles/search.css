@@ -103,6 +103,12 @@ input::-webkit-calendar-picker-indicator {
     overflow: auto;
     border-radius: 0.714285em;
 }
+.height10 {
+    height: 10%;
+}
+.height90 {
+    height: 90%;
+}
 .black {
     display: none;
     position: fixed;
@@ -166,6 +172,9 @@ label {
 .thumbnail {
     height: 14.286em;
     width: 14.286em;
+}
+.text_center {
+    text-align: center;
 }
 .innertable {
     margin-top: 2%;
