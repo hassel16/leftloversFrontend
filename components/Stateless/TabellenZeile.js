@@ -1,6 +1,6 @@
 const TabellenZeile = ({ ergebnis, id, onDetails=f=>f }) => {
     const { user, titel, preis, createdatetime, foto, description, entfernung } = ergebnis
-
+    console.log("ergebnisse: " + JSON.stringify(ergebnis))
     return (
         <table className="innertable">
             <tbody className="border">

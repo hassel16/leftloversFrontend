@@ -100,10 +100,12 @@ class Popup extends Component {
         }
         if (offer.flag) {
             offer.user.userid = this.state.current_user
+            console.log(JSON.stringify(offer))
             postRequest("AngebotsService/Angebot", JSON.stringify(offer))
                 .then(response => response.json)
                 .then(responseJSON => {
                     console.log("postrequest mit offer: " + JSON.stringify(offer))
+                    console.log("request: " + JSON.stringify(responseJSON))
                     return responseJSON
                 })
                 .catch(error => console.error(error))

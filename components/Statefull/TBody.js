@@ -110,7 +110,6 @@ class TBody extends Component {
             }
             const kategorie = (option) => (option === 99)? "": `&kategorieid=${1}`//!!!!!!!!!!
             const rad = `radius=${_radius.options[_radius.selectedIndex].value}`
-            console.log(rad)
             const tit = titel(_text.value)
             const kat = kategorie(_category.options[_category.selectedIndex].getAttribute("kategorieid"))
             const {lat, lng, long_name} = this.state.current_city
