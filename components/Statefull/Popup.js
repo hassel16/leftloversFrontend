@@ -33,6 +33,7 @@ class Popup extends Component {
         this.setState({ current_category: e.target.value, current_category_id: select.options[select.selectedIndex].getAttribute("kategorieid") })
     }
     uploadFile(event) {
+        
         function progress(response) {
             var reader = response.body.getReader();
             var decoder = new TextDecoder();
@@ -63,16 +64,20 @@ class Popup extends Component {
         })
         .then(progress)
         .then(response => {
+            console.log("Link zum Bild auf cloudinary: " + (response.secure_url))
             this.setState({current_image: response.secure_url})
             return response
         })  
         .catch(error => console.error(error))
+        
 
     }
     createOffer() {
         console.log(this.state.current_category_id)
         const { _city, _designation, _description, _preis, _euro } = this.refs
         let offer = new Offer(this.state.current_city, _designation.value, this.state.current_category, this.state.current_category_id, _preis.value, _description.value, this.state.current_image)
+        console.log(offer.foto)
+        console.log(offer)
         if (!offer.isNotNull(offer.city) && this.state.current_city === undefined) {
             create_div(_city, "! Bitte wählen Sie eine Stadt aus")
             offer.setFlag()
