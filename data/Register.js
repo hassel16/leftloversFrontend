@@ -1,4 +1,3 @@
-//import City from './City'
 class Register {
     constructor(city, email,username, password, password_repeat) {
         this.city = city
@@ -21,7 +20,7 @@ class Register {
         return (regex.test(this.email.toLowerCase()))
     }
     check_username() {
-        const regex = /^[a-zA-Z\d]{6,64}$/ // \d = Ziffern;
+        const regex = /^[a-zA-Z\d]{6,64}$/ 
         return (regex.test(this.username))
     }
     check_passwordLength() {

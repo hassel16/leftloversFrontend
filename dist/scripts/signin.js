@@ -5,24 +5,6 @@ import {remove_div, create_div} from '../../data/Factory'
 //key: AIzaSyBUaYI1y3ig_ZVp5C57Sr633U7kl5Bnk0s
 
 var global = undefined
-
-/*
-const create_div = (big_sister, textContent) => {
-    if (big_sister.nextElementSibling.nodeName !== "DIV") {
-        let user_error_div = document.createElement("div")
-        user_error_div.classList.add("error_div")
-        user_error_div.setAttribute("id", textContent)
-        user_error_div.textContent = textContent
-        big_sister.parentNode.insertBefore(user_error_div, big_sister.nextSibling)
-    }
-}
-
-const remove_div = id => {
-    if (document.getElementById(id)) {
-        document.getElementById(id).parentNode.removeChild(document.getElementById(id))
-    }
-}
-*/
 const signup = () => {
     const input_city = document.getElementById("city")
     const input_email = document.getElementById("email")
@@ -47,9 +29,6 @@ const signup = () => {
             create_div(input_city, "! Keine Stadt aus den Vorschlägen ausgewählt")
         } else {
             remove_div("! Keine Stadt aus den Vorschlägen ausgewählt")
-            // const long_name = global.address_components.filter(x => x.types[0] === "locality")[0].long_name // :)
-            // const lat = global.geometry.location.lat() //entweder stringify oder toString!
-            // const lng = global.geometry.location.lng()
             register.city = new City(global, input_city.value)
             console.log(JSON.stringify(register))
         }
@@ -132,7 +111,6 @@ const signup = () => {
 window.addEventListener("load", () => {
  
     const acc = new google.maps.places.Autocomplete(document.getElementById("city"), {
-        //types: ['(cities)'],
         componentRestrictions: { country: 'de' }
     })
 

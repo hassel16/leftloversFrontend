@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import { render } from 'react-dom'
 import {getRequest} from '../../data/APICall'
-import {create_div, remove_div} from "../../data/Factory"
 import Tabelle from "../Stateless/Tabelle"
 import Details from "./Details"
 import {exists} from "../../data/Token"

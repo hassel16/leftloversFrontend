@@ -34,8 +34,6 @@ th {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 0.714285em;
     margin-top: 0.571428em; 
-    /* margin-bottom: 0.65em; */
-    /*margin-left: 0.4285714em;*/
     background-color: transparent;
     border: none;
 }
@@ -132,7 +130,7 @@ input[type="text"], input[type="file"], input[type="number"], select, textarea {
     display: inline-block;
     border: 0.075em solid #ccc;
     box-sizing: border-box;
-    background: transparent; /*muss man evtl wieder raus machen*/
+    background: transparent; 
 
 }
 #check {

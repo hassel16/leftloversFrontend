@@ -29,7 +29,7 @@ class Offer {
         }
     }
     checkPrice () {
-        const regex = /^\d{1,8}([\.]\d{2})?$/ ///^\$?(?!0.00)(([0-9]{1,3},([0-9]{3},)*)[0-9]{3}|[0-9]{1,3})(\,[0-9]{2})?$/
+        const regex = /^\d{1,8}([\.]\d{2})?$/
         return regex.test(this.preis)
     }
     setFlag() {

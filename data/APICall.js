@@ -39,12 +39,6 @@ const APICall = {
         return fetch(APICall.getURL(appendix), {
             method: "POST",
             headers: APICall.headerToken(true),
-            /*
-            headers: {
-                "content-type": "application/json",
-                //"Authorization": token
-            },
-            */
             body: body
         })
     },
@@ -79,5 +73,5 @@ const APICall = {
     }
 }
 
-module.exports = APICall//, asyncRequest}
+module.exports = APICall
 

@@ -6,7 +6,7 @@ import { getRequest } from '../../data/APICall'
 import City from '../../data/City'
 import Kategorie from '../Stateless/Kategorie'
 import { create_div, remove_div } from '../../data/Factory'
-import { token, exists } from '../../data/Token'
+import { exists } from '../../data/Token'
 import Tabelle from '../Stateless/Tabelle'
 import Details from '../Statefull/Details'
 
@@ -21,7 +21,7 @@ class TBody extends Component {
             daniels_array: [],
             loading: false,
             current_category: "all",
-            current_city: undefined // ""
+            current_city: undefined
         }
     }
 
@@ -40,10 +40,9 @@ class TBody extends Component {
     }
     
     componentDidMount() {
-        let { _stadt, _text } = this.refs
+        let { _stadt } = this.refs
 
         const acc = new google.maps.places.Autocomplete(_stadt, {
-            //types: ['(cities)'],
             componentRestrictions: { country: 'de' }
         })
 
@@ -63,7 +62,7 @@ class TBody extends Component {
                 })
                 .then(responseJSON => {
                     sessionStorage.setItem("user", responseJSON)
-                    this.setState({ current_city: responseJSON.city }) //.name_details
+                    this.setState({ current_city: responseJSON.city }) 
                     _stadt.value = this.state.current_city.name_details
                 })
         }
@@ -124,7 +123,7 @@ class TBody extends Component {
             const {lat, lng, long_name} = this.state.current_city
             const url = `${rad}${tit}${kat}&lat=${lat}&lng=${lng}&long_name=${long_name}`
             console.log(url)
-            this.setState({loading: true})
+            //this.setState({loading: true})
             getRequest("AngebotsService/Angebot", url)//
                 .then(response => {
 
@@ -145,7 +144,7 @@ class TBody extends Component {
                 .then(array => {
                     
                     render(
-                        <Tabelle ergebnisse={array} loading={this.state.loading} onDetails={this.showDetails} />,
+                        <Tabelle ergebnisse={array} loading={false} onDetails={this.showDetails} />,
                         document.getElementById("such_list")
                     )
                    
@@ -170,14 +169,13 @@ class TBody extends Component {
                         <option kategorieid={7} value="Milchprodukte">Milchprodukte</option>
                         <option kategorieid={8} value="Obst">Obst</option>
                     </select>
-                    {/* {<Kategorie />} */}
                 </th>
                 <th>
                     <input placeholder="Was suchst du?" ref="_text" type="text" id="angebot_suchen" list="elements" onInput={() => this.feindHoertMit()} />
                     <Datalist id="elements" elementList={this.state.current_array} />
                 </th>
                 <th>
-                    <input ref="_stadt" type="text" /> {/*placeholder="Stadt"*/}
+                    <input ref="_stadt" type="text" />
                 </th>
                 <th>
                     <select ref="_radius">

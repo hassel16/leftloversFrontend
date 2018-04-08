@@ -28,7 +28,9 @@ class Popup extends Component {
         document.getElementById('fade').style.display = 'none'
     }
     newCategory(e) {
-        this.setState({ current_category: e.target.value, current_category_id: parseInt(e.target.getAttribute("kategorieid")) })
+        const select = e.target
+        console.log(select.options[select.selectedIndex].getAttribute("kategorieid"))
+        this.setState({ current_category: e.target.value, current_category_id: select.options[select.selectedIndex].getAttribute("kategorieid") })
     }
     uploadFile(event) {
         function progress(response) {
@@ -36,17 +38,14 @@ class Popup extends Component {
             var decoder = new TextDecoder();
             var decodedValue;
             
-            function update() {
+            function update() {//https://codepen.io/eitanp461/pen/NdPNmX
               return reader.read().then(function(result) {
                 if (result.done) {
-                  // Return final response from Cloudinary to next handler
-                  //console.log('decodedValue', decodedValue);
                   return (JSON.parse(decodedValue));
                 }
                 decodedValue = decoder.decode(result.value || new Uint8Array, {
                   stream: true
                 });
-                // Continue reading response
                 return update();      
               });
             }
@@ -66,12 +65,12 @@ class Popup extends Component {
         .then(response => {
             this.setState({current_image: response.secure_url})
             return response
-        })  //.data.secure_url))
+        })  
         .catch(error => console.error(error))
 
     }
     createOffer() {
-
+        console.log(this.state.current_category_id)
         const { _city, _designation, _description, _preis, _euro } = this.refs
         let offer = new Offer(this.state.current_city, _designation.value, this.state.current_category, this.state.current_category_id, _preis.value, _description.value, this.state.current_image)
         if (!offer.isNotNull(offer.city) && this.state.current_city === undefined) {
@@ -100,7 +99,6 @@ class Popup extends Component {
         }
         if (offer.flag) {
             offer.user.userid = this.state.current_user
-            console.log(JSON.stringify(offer))
             postRequest("AngebotsService/Angebot", JSON.stringify(offer))
                 .then(response => response.json)
                 .then(responseJSON => {
@@ -115,7 +113,6 @@ class Popup extends Component {
     componentDidMount() {
         let { _city } = this.refs
         const acc = new google.maps.places.Autocomplete(_city, {
-            //types: ['(cities)'],
             componentRestrictions: { country: 'de' }
         })
 
@@ -135,7 +132,6 @@ class Popup extends Component {
                     }
                 })
                 .then(responseJSON => {
-                    //sessionStorage.setItem("user", responseJSON)
                     this.setState({current_city: responseJSON.city})
                     this.setState({current_user: responseJSON.userid})
                     _city.value = this.state.current_city.name_details

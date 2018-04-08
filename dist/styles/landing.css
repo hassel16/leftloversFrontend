@@ -21,15 +21,9 @@ body {
 
 }
 #heading {
-    /*
-    text-align: center;
-    position: relative;
-    transform: translateY(150%);
-    */
     font-size: 900%;
-    
+  
     height: 100px;
-    /*width: 180px;*/
     text-align: center;
     position: absolute;
     top:0;
@@ -47,9 +41,7 @@ table {
 
 #pic_vegetables {
     background-image: url("../images/vegetables.jpg");
-    height: 85%; /*83%;*/
-    /*width: 100%;*/
-    /* Center and scale the image nicely */
+    height: 85%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -83,7 +75,6 @@ th a {
     border-radius: 0.714285em;
     margin-top: 0.571428em; 
     margin-bottom: 0.65em;
-    /*margin-left: 0.4285714em;*/
 }
 th  a:hover {
     cursor: pointer;

@@ -20,4 +20,3 @@ const TabellenZeile = ({ ergebnis, id, onDetails=f=>f }) => {
 }
 
 module.exports = TabellenZeile
-//zweite stelle: <td key={id + kategorie}>{kategorie}</td>
