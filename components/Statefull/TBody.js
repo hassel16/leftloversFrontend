@@ -95,6 +95,13 @@ class TBody extends Component {
             .catch(error => console.error(error))
 
     }
+    sortbyDistance (a, b) {
+        if (a.entfernung < b.entfernung)
+        return -1;
+      if (a.entfernung > b.entfernung)
+        return 1;
+      return 0;
+    }
     checkInput() {
         const { _stadt, _text, _radius, _category } = this.refs
         if (this.state.current_city === undefined) {
@@ -128,7 +135,7 @@ class TBody extends Component {
                         }
                     })
                     console.log("ergebnisArray: " + JSON.stringify(ergebnisArray))
-                    return ergebnisArray
+                    return ergebnisArray.sort(this.sortbyDistance)
                 })
                 .then(array => {
                     render(
