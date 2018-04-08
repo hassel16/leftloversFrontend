@@ -33,7 +33,7 @@ class Popup extends Component {
         this.setState({ current_category: e.target.value, current_category_id: select.options[select.selectedIndex].getAttribute("kategorieid") })
     }
     uploadFile(event) {
-        
+        console.log("file attached")
         function progress(response) {
             var reader = response.body.getReader();
             var decoder = new TextDecoder();
