@@ -64,7 +64,7 @@ class Popup extends Component {
         })
         .then(progress)
         .then(response => {
-            console.log("Link zum Bild auf cloudinary: " + (response.secure_url))
+            console.log("Link zum Bild auf cloudinary: " + response.secure_url)
             this.setState({current_image: response.secure_url})
             return response
         })  
