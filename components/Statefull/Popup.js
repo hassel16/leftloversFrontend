@@ -158,7 +158,7 @@ class Popup extends Component {
 
                 <Label htmlFor="preis" text="Preis" />
                 <div className="_100">
-                    <input className="_90" ref="_preis" type="number" min="0" name="preis" step="0.01" id="check" placeholder="0.00" required />
+                    <input className="_90" ref="_preis" type="number" min="0" name="preis" id="check" placeholder="0.00" required />
                     <b ref="_euro" className="_10">€</b>
                     <span></span>
                 </div>
