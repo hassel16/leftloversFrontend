@@ -108,7 +108,8 @@ class TBody extends Component {
                     return `&angebotstitel=${text}`
                 }
             }
-            const kategorie = (option) => (option === 99)? "": `&kategorieid=${1}`//!!!!!!!!!!
+            const kategorie = (option) => (option == 99)? "": `&kategorieid=${option}`//wenn alles selektiert ist was geschieht dann?
+            console.log("kategorie: "+_category.options[_category.selectedIndex].getAttribute("kategorieid"))
             const rad = `radius=${_radius.options[_radius.selectedIndex].value}`
             const tit = titel(_text.value)
             const kat = kategorie(_category.options[_category.selectedIndex].getAttribute("kategorieid"))
@@ -118,6 +119,7 @@ class TBody extends Component {
             getRequest("AngebotsService/Angebot", url)//
                 .then(response => response.json())
                 .then(responseJSON => {
+                    console.log("Reponse: "+JSON.stringify(responseJSON))
                     let ergebnisArray = []
                     const currentKategorie = this.state.current_category
                     responseJSON.map(element => {
