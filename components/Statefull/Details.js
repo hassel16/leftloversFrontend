@@ -33,8 +33,8 @@ class Details extends Component {
         return (
             <div className="popup" id="light_details">
 
-                <Label htmlFor="city" text="Stadt" />
-                <input type="text" name="city" id="city_details" value={city.long_name} readOnly />
+                <Label htmlFor="city" text="Standort" />
+                <input type="text" name="city" id="city_details" value={city.name_details} readOnly />
 
                 <Label htmlFor="bezeichnung" text="Bezeichnung" />
                 <input ref="_text" type="text" name="bezeichnung" id="bezeichnung_details" value={titel} readOnly />
@@ -54,7 +54,7 @@ class Details extends Component {
                     <tbody>
                         <tr className="full">
                             <td rowSpan="2">
-                                <img src={foto.fotourl} className="thumbnail"></img>
+                                <img src={(foto.fotourl === "")?"../../dist/images/file.png":foto.fotourl} className="thumbnail"></img>
                             </td>
                             <td>
                                 <img src="../dist/images/face.png" className="thumbnail"></img>
