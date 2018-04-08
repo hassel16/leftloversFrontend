@@ -19,6 +19,7 @@ class TBody extends Component {
         this.state = {
             current_array: [...Categories["all"]],
             daniels_array: [],
+            loading: false,
             current_category: "all",
             current_city: undefined // ""
         }
@@ -123,8 +124,12 @@ class TBody extends Component {
             const {lat, lng, long_name} = this.state.current_city
             const url = `${rad}${tit}${kat}&lat=${lat}&lng=${lng}&long_name=${long_name}`
             console.log(url)
+            this.setState({loading: true})
             getRequest("AngebotsService/Angebot", url)//
-                .then(response => response.json())
+                .then(response => {
+
+                    return response.json()
+                })
                 .then(responseJSON => {
                     console.log("Reponse: "+JSON.stringify(responseJSON))
                     let ergebnisArray = []
@@ -138,10 +143,12 @@ class TBody extends Component {
                     return ergebnisArray.sort(this.sortbyDistance)
                 })
                 .then(array => {
+                    
                     render(
-                        <Tabelle ergebnisse={array} loading={false} onDetails={this.showDetails} />,
+                        <Tabelle ergebnisse={array} loading={this.state.loading} onDetails={this.showDetails} />,
                         document.getElementById("such_list")
-                    ) 
+                    )
+                   
                 })
 
 

@@ -15,9 +15,7 @@ class Details extends Component {
     componentDidMount() {
         const fadeDiv = document.getElementById("fade")
         const lightDiv = document.getElementById('light_details')
-        //if (abbrechenButton !== null && fadeDiv !== null && lightDiv !== null) {
         fadeDiv.onclick = () => this.hideDetails()
-        //lightDiv.style.display = 'block'
         fadeDiv.style.display = 'block'
     }
     componentWillReceiveProps(nextProps) {
@@ -31,7 +29,7 @@ class Details extends Component {
 
 
     render() {
-        const { titel, description, createdatetime, kategorie, preis, foto, user, city } = this.props.ergebnis
+        const { titel, description, createdatetime, preis, foto, user, city } = this.props.ergebnis
         return (
             <div className="popup" id="light_details">
 
