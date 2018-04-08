@@ -96,9 +96,11 @@ class TBody extends Component {
 
     }
     sortbyDistance (a, b) {
-        if (a.entfernung < b.entfernung)
+        const floatA = parseFloat(a.entfernung)
+        const floatB = parseFloat(b.entfernung)
+        if (floatA < floatB)
         return -1;
-      if (a.entfernung > b.entfernung)
+      if (floatA > floatB)
         return 1;
       return 0;
     }
