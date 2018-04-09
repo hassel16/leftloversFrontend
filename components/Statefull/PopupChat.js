@@ -29,7 +29,7 @@ class PopupChat extends Component {
         let userid = this.props.details[1];
         const { _chattitel, _nachrichttext} = this.refs;
         let messageForm = new MessageForm(_nachrichttext.value);
-
+        messageForm.setUser(function(){
             let chatForm = new ChatForm(angebotid,userid,_chattitel.value,messageForm);
             if (!chatForm.isNotNull(chatForm.titel)) {
                 create_div(_chattitel, "! Bitte geben Sie ihrer Nachricht einen Titel")
@@ -44,15 +44,13 @@ class PopupChat extends Component {
             } else {
                 remove_div("! Bitte schreibe eine Nachricht")
             }
-            if (chatForm.flag && messageForm.flag ) {
-                messageForm.setUser(function(){
+            if (chatForm.flag && messageForm.flag ) {   
                     chatForm.setUser(userid,function(){
                         chatForm.newChat();
                         this.hidePopup()
                     })
-                })
             }
-        
+        })
     }
 
     render() {
