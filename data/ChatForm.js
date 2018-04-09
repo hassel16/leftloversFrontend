@@ -1,12 +1,16 @@
 import {exists} from './Token'
+import {MessageForm} from './MessageForm'
 import {postRequest, getRequest} from './APICall'
 
 class ChatForm{
 
-    constructor(offerId,titel,messageform){
+    constructor(offerId,titel,messagetext,userIds){
         this.offerId = offerId;
         this.titel=titel;
-        this.messageform=messageform
+        this.messageform= {
+            text:messagetext,
+            userId:undefined
+        }
         this.userIds=[];
         this.flag = true;
         this.setFlag = this.setFlag.bind(this)
@@ -25,6 +29,7 @@ class ChatForm{
                 .then(responseJSON => {
                     this.userIds.push(responseJSON.userid);
                     this.userIds.push(user2);
+                    this.messageform.userId=responseJSON.userid;
                     callback();
                 })
         }
