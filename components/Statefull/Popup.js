@@ -29,7 +29,6 @@ class Popup extends Component {
     }
     newCategory(e) {
         const select = e.target
-        console.log(select.options[select.selectedIndex].getAttribute("kategorieid"))
         this.setState({ current_category: e.target.value, current_category_id: select.options[select.selectedIndex].getAttribute("kategorieid") })
     }
     uploadFile(event) {
@@ -73,11 +72,8 @@ class Popup extends Component {
 
     }
     createOffer() {
-        console.log(this.state.current_category_id)
         const { _city, _designation, _description, _preis, _euro } = this.refs
         let offer = new Offer(this.state.current_city, _designation.value, this.state.current_category, this.state.current_category_id, _preis.value, _description.value, this.state.current_image)
-        console.log(offer.foto)
-        console.log(offer)
         if (!offer.isNotNull(offer.city) && this.state.current_city === undefined) {
             create_div(_city, "! Bitte wählen Sie eine Stadt aus")
             offer.setFlag()

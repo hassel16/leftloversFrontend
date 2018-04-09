@@ -30,6 +30,7 @@ class Ergebnis extends Component {
             alert("du musst dich anmelden, um dieses feature genießen zu können")
         }
     }
+
     componentDidMount() {
         this.setState({loading:true})
         getRequest("AngebotsService/Angebot")

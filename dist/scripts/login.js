@@ -36,7 +36,6 @@ const login = () => {
         })
         .then(responseJson => {
             sessionStorage.setItem("token", ` Bearer ${responseJson.token}`)
-            console.log("token: " + responseJson.token)
             if (responseJson.token != undefined) {
                 window.location.href = "./search.html"
             }

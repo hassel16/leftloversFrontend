@@ -1,6 +1,7 @@
 import Label from "../Stateless/Label"
 import Kategorie from "../Stateless/Kategorie"
 import { Component } from 'react'
+import PopupChat from "./PopupChat"
 import { render } from 'react-dom'
 
 class Details extends Component {
@@ -12,6 +13,16 @@ class Details extends Component {
         _light.style.display = 'none';
         document.getElementById('fade').style.display = 'none'
     }
+
+    showChatfenster(angebotid,user) {
+            render(
+                <PopupChat details={[angebotid,user.userid]} />,
+                document.getElementById("popup_anker") 
+            )
+            document.getElementById('light_details').style.display = 'block'
+            document.getElementById('fade').style.display = 'block'
+    }
+
     componentDidMount() {
         const fadeDiv = document.getElementById("fade")
         const lightDiv = document.getElementById('light_details')
@@ -29,7 +40,7 @@ class Details extends Component {
 
 
     render() {
-        const { titel, description, createdatetime, preis, foto, user, city } = this.props.ergebnis
+        const { angebotid,titel, description, createdatetime, preis, foto, user, city } = this.props.ergebnis
         return (
             <div className="popup" id="light_details">
 
@@ -67,7 +78,7 @@ class Details extends Component {
                         </tr>
                     </tbody>
                 </table>
-                <button className="left popup_button" onClick={() => console.log("kontaktieren")}>Kontaktieren</button>
+                <button className="left popup_button" onClick={() => this.showChatfenster(angebotid,user)}>Kontaktieren</button>
                 <button className="rigth popup_button" id="abbrechen_details" onClick={() => this.hideDetails()}>Abbrechen</button>
 
             </div >
