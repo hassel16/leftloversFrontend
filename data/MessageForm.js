@@ -3,9 +3,9 @@ import {postRequest, getRequest} from './APICall'
 
 class MessageForm{
 
-    constructor(text){
+    constructor(text,userid){
         this.text=text;
-        this.userId="";
+        this.userId;
         this.flag = true;
         this.setFlag = this.setFlag.bind(this)
     }
