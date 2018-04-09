@@ -5,7 +5,7 @@ import {postRequest, getRequest} from './APICall'
 class ChatForm{
 
     constructor(offerId,titel,messagetext,userIds){
-        this.offerId = offerId;
+        this.offerid = offerId;
         this.titel=titel;
         this.messageform= {
             text:messagetext,
