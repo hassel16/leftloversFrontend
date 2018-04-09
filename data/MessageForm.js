@@ -5,7 +5,7 @@ class MessageForm{
 
     constructor(text,userid){
         this.text=text;
-        this.userId;
+        this.userId=0;
         this.flag = true;
         this.setFlag = this.setFlag.bind(this)
     }
@@ -48,4 +48,5 @@ class MessageForm{
         .catch(error => console.error(error))
     }
     
-}module.exports=MessageForm;
+}
+module.exports=MessageForm;
