@@ -6,12 +6,11 @@ class MessageForm{
     constructor(text){
         this.text=text;
         this.userId="";
-        this.setUser();
         this.flag = true;
         this.setFlag = this.setFlag.bind(this)
     }
 
-    setUser(){
+    setUser(callback){
         if (exists()) {
             getRequest("UAAService/resolve")
                 .then(response => {
@@ -23,6 +22,7 @@ class MessageForm{
                 })
                 .then(responseJSON => {
                     this.userId = responseJSON.userid;
+                    callback();
                 })
         }
     }

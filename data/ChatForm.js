@@ -3,17 +3,16 @@ import {postRequest, getRequest} from './APICall'
 
 class ChatForm{
 
-    constructor(offerId,user2,titel,messageform){
+    constructor(offerId,titel,messageform){
         this.offerId = offerId;
         this.titel=titel;
         this.messageform=messageform
         this.userIds=[];
-        this.setUser(user2);
         this.flag = true;
         this.setFlag = this.setFlag.bind(this)
     }
 
-    setUser(user2){
+    setUser(user2,callback){
         if (exists()) {
             getRequest("UAAService/resolve")
                 .then(response => {
@@ -26,6 +25,7 @@ class ChatForm{
                 .then(responseJSON => {
                     this.userIds.push(responseJSON.userid);
                     this.userIds.push(user2);
+                    callback();
                 })
         }
     }

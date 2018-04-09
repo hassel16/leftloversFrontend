@@ -29,25 +29,30 @@ class PopupChat extends Component {
         let userid = this.props.details[1];
         const { _chattitel, _nachrichttext} = this.refs;
         let messageForm = new MessageForm(_nachrichttext.value);
-        let chatForm = new ChatForm(angebotid,userid,_chattitel.value,messageForm);
 
-        if (!chatForm.isNotNull(chatForm.titel)) {
-            create_div(_chattitel, "! Bitte geben Sie ihrer Nachricht einen Titel")
-            chatForm.setFlag()
-        } else {
-            remove_div("! Bitte geben Sie ihrer Nachricht einen Titel")
-        }
-
-        if (!messageForm.isNotNull(messageForm.text)) {
-            create_div(_nachrichttext, "! Bitte schreibe eine Nachricht")
-            messageForm.setFlag()
-        } else {
-            remove_div("! Bitte schreibe eine Nachricht")
-        }
-        if (chatForm.flag && messageForm.flag ) {
-            chatForm.newChat();
-            this.hidePopup()
-        }
+            let chatForm = new ChatForm(angebotid,userid,_chattitel.value,messageForm);
+            if (!chatForm.isNotNull(chatForm.titel)) {
+                create_div(_chattitel, "! Bitte geben Sie ihrer Nachricht einen Titel")
+                chatForm.setFlag()
+            } else {
+                remove_div("! Bitte geben Sie ihrer Nachricht einen Titel")
+            }
+    
+            if (!messageForm.isNotNull(messageForm.text)) {
+                create_div(_nachrichttext, "! Bitte schreibe eine Nachricht")
+                messageForm.setFlag()
+            } else {
+                remove_div("! Bitte schreibe eine Nachricht")
+            }
+            if (chatForm.flag && messageForm.flag ) {
+                messageForm.setUser(function(){
+                    chatForm.setUser(userid,function(){
+                        chatForm.newChat();
+                        this.hidePopup()
+                    })
+                })
+            }
+        
     }
 
     render() {
