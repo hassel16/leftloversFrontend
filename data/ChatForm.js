@@ -46,7 +46,7 @@ class ChatForm{
         postRequest("ChatService/chat", JSON.stringify(this))
         .then(response => response.json)
         .then(responseJSON => {
-            console.log("postrequest mit offer: " + JSON.stringify(offer))
+            console.log("postrequest mit offer: " + JSON.stringify(this))
             console.log("request: " + JSON.stringify(responseJSON))
             return responseJSON;
         })
