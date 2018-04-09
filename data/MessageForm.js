@@ -5,7 +5,7 @@ class MessageForm{
 
     constructor(text){
         this.text=text;
-        this.userId;
+        this.userId="";
         this.setUser();
         this.flag = true;
         this.setFlag = this.setFlag.bind(this)
